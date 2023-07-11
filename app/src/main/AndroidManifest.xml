@@ -12,8 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeliveryApp"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".ui.activities.YourOrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.NotificationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.BookmarksActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.PaymentActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true">

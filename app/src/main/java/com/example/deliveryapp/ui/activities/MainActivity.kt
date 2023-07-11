@@ -3,9 +3,9 @@ package com.example.deliveryapp.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import com.example.deliveryapp.R
+import com.example.deliveryapp.adapter.HideBottomNavigationOnScrollBehavior
 import com.example.deliveryapp.databinding.ActivityMainBinding
 import com.example.deliveryapp.ui.fragments.AccountFragment
 import com.example.deliveryapp.ui.fragments.CartFragment
@@ -22,36 +22,34 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val navigationView = binding.bottomNavigation
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-//        toolbar.title = "Home"
-//        loadFragment(HomeFragment())
+
+
+
         setContentView(binding.root)
+
     }
 
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-//                    toolbar.title = "Home"
                     fragment = HomeFragment()
                     loadFragment(fragment)
                     return@OnNavigationItemSelectedListener true
                 }
 
                 R.id.navigation_offers -> {
-//                    toolbar.title = "Offers"
                     fragment = OffersFragment()
                     loadFragment(fragment)
                     return@OnNavigationItemSelectedListener true
                 }
 
                 R.id.navigation_cart -> {
-//                    toolbar.title = "Cart"
                     fragment = CartFragment()
                     loadFragment(fragment)
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_account -> {
-//                    toolbar.title = "Account"
                     fragment = AccountFragment()
                     loadFragment(fragment)
                     return@OnNavigationItemSelectedListener true

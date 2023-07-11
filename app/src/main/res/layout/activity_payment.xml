@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.PaymentActivity">
+
+    <ImageView
+        android:id="@+id/payment_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_arrow_back_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="25dp"/>
+
+    <TextView
+        android:id="@+id/payment_title_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Credit Card"
+        app:layout_constraintTop_toBottomOf="@id/payment_back"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginVertical="30dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_credit_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_title_1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/payment_mb_bank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_mbbank"
+                android:layout_marginHorizontal="9dp"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MB Bank"
+                android:fontFamily="@font/roboto_regular"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/payment_tech_bank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:src="@drawable/logo_tech"
+                android:layout_marginHorizontal="8dp"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Techcom Bank"
+                android:fontFamily="@font/roboto_regular"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/payment_vietin_bank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:src="@drawable/logo_vietinbank"
+                android:layout_marginHorizontal="9dp"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vietin Bank"
+                android:fontFamily="@font/roboto_regular"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/payment_title_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wallets"
+        app:layout_constraintTop_toBottomOf="@id/layout_credit_card"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginVertical="30dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_wallets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_title_2">
+
+        <LinearLayout
+            android:id="@+id/payment_zalopay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:src="@drawable/logo_zalopay"
+                android:layout_marginHorizontal="8dp"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ZaloPay"
+                android:fontFamily="@font/roboto_regular"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/payment_momo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:src="@drawable/logo_momo"
+                android:layout_marginHorizontal="8dp"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Momo"
+                android:fontFamily="@font/roboto_regular"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/payment_viettel_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:src="@drawable/logo_viettel_pay"
+                android:layout_marginHorizontal="9dp"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Viettel Pay"
+                android:fontFamily="@font/roboto_regular"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/payment_title_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visa and Others"
+        app:layout_constraintTop_toBottomOf="@id/layout_wallets"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginVertical="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
