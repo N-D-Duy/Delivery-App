@@ -13,20 +13,7 @@
         android:theme="@style/Theme.DeliveryApp"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
-            android:name=".ui.activities.DetailActivity"
-=======
-            android:name=".ui.activities.YourOrdersActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.NotificationsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.BookmarksActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.PaymentActivity"
->>>>>>> origin/dev_duy
+            android:name=".ui.activities.Splash"
             android:exported="false" />
         <activity
             android:name=".ui.activities.MainActivity"
