@@ -3,12 +3,292 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.OffersFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="OffersFragment" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_bar"
+                android:layout_width="330dp"
+                android:layout_height="39dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/search_view_bg"
+                app:defaultQueryHint="Search food nearby"
+                app:iconifiedByDefault="false" />
+
+            <ImageView
+                android:id="@+id/button_filter"
+                android:layout_width="39dp"
+                android:layout_height="39dp"
+                android:background="@drawable/background_icon_filter"
+                android:padding="10dp"
+                android:src="@drawable/filter_1" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/offers_layout_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_search">
+
+            <TextView
+                android:id="@+id/offers_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="Happy Deals"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/offers_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Relish a big binge with our biggest offers."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/offers_text1" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/offers_banner1"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:cardCornerRadius="8dp"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/offers_text2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/discount_1_bg"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="190dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="Rescued Food"
+                            android:textColor="@color/white"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Saving food and hunger."
+                            android:textColor="@color/white"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:maxWidth="160dp"
+                            android:text="Left over food and supplies are gathered from food venders and chefs, and are sold for 50% off!"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="165dp"
+                        android:src="@drawable/image_discount_1" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/offers_banner2"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="8dp"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toStartOf="@id/offers_banner3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/offers_banner1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/discount_2_bg">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LAAARGE DISCOUNTS"
+                        android:maxWidth="100dp"
+                        android:fontFamily="@font/budmo_jigglish"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18sp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upto"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/discount"
+                            android:textColor="#FFEB3B"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No upper limit!"
+                        android:textColor="#5C0F0A"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textSize="12sp"
+                        android:layout_marginStart="10dp"/>
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="100dp"
+                        android:layout_height="101dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bow_food_1"
+                        app:riv_oval="true"
+                        android:layout_marginStart="20dp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/offers_banner3"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="5dp"
+                app:layout_constraintStart_toEndOf="@id/offers_banner2"
+                app:layout_constraintTop_toBottomOf="@id/offers_banner1"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/discount_3_bg">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TRY NEW"
+                        android:maxWidth="100dp"
+                        android:fontFamily="@font/budmo_jigglish"
+                        android:textColor="@color/white"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Explore unique tastes from new eatries"
+                        android:maxWidth="140dp"
+                        android:textColor="#5C0F0A"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:textSize="12sp"
+                        android:layout_marginStart="10dp"/>
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="100dp"
+                        android:layout_height="101dp"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/bow_food_2"
+                        app:riv_oval="true"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginStart="20dp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/offers_separator"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/offers_layout_1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/offers_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exclusively on FastFood"
+            app:layout_constraintTop_toBottomOf="@id/offers_separator"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/offers_text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delicious offers from top brands!"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/offers_text3"
+            android:layout_marginStart="20dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/offers_text4"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            tools:listitem="@layout/item_offers_brands"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
