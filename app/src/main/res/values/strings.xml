@@ -6,4 +6,21 @@
     <string name="title_account">Account</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update">Update</string>
+    <string name="about">About</string>
+    <string name="log_out">Log Out</string>
+    <string name="rate_us_on_the_play_store">Rate us on the Play Store</string>
+    <string name="report_an_emergency">Report an Emergency</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="help">Help</string>
+    <string name="my_preferences">My Preferences</string>
+    <string name="feedback_refunds"><![CDATA[Feedback & Refunds]]></string>
+    <string name="your_orders">Your Orders</string>
+    <string name="day_default">#xx-xx-xxxx</string>
+    <string name="phone_default">+91 xxxxxxxxxxx</string>
+    <string name="gmail_default">Lorem@gmail.com</string>
+    <string name="name_default">Lorem Ipsum</string>
+    <string name="edit">Edit</string>
+    <string name="personal_details">Personal details</string>
+    <string name="discount"> <strike>20% off</strike> </string>
 </resources>
