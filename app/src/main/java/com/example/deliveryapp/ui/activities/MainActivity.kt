@@ -3,9 +3,9 @@ package com.example.deliveryapp.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import com.example.deliveryapp.R
+import com.example.deliveryapp.adapter.ViewPagerAdapter
 import com.example.deliveryapp.databinding.ActivityMainBinding
 import com.example.deliveryapp.ui.fragments.AccountFragment
 import com.example.deliveryapp.ui.fragments.CartFragment
@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragment: Fragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -69,4 +70,7 @@ class MainActivity : AppCompatActivity() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
+     val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+
+
 }
