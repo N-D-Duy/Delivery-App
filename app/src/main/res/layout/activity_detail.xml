@@ -6,398 +6,560 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.DetailActivity"
     android:orientation="vertical">
-<!--Image Above-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!--Image Dishes-->
-        <ImageView
-            android:id="@+id/imageView2"
+        android:layout_height="match_parent"
+        android:background="#F5F5F8">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baked_jollof_rice"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-        <!--Star-->
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:background="@drawable/shape_black_80"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.86"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.137">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingStart="5dp">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/circle" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/circle" />
-
-                <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_black"
-                    android:text="4.5"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/star" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-        <!--Empty Layout-->
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/shape_white"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></LinearLayout>
-        <!--        Name Dishes-->
-        <!--Heart-->
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="24dp"
-            android:background="@drawable/shape_white"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="0.78">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/poppins_black"
-                android:text="Jollof Riece"
-                android:textAlignment="textStart"
-                android:textSize="25dp" />
-
-            <TextView
-                android:layout_width="190dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="Suhani's Stop, Kukapally"
-                android:textAlignment="textStart"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginBottom="60dp"
-            android:src="@drawable/heart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.842"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-<!--Detail-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="330dp"
-        android:layout_marginTop="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="1.0"
-        android:background="@drawable/rectangle1053">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="1.0"
-            android:orientation="vertical">
-            <!--        Description And Value-->
-            <LinearLayout
+            android:layout_height="wrap_content">
+            <!--Image Above-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <!--Description   -->
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!--Image Dishes-->
+                <ImageView
+                    android:id="@+id/img_dishes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baked_jollof_rice"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+                <!--Star-->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Descripttion"
-                        android:textSize="20sp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_medium"
-                        />
-                    <TextView
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
-                        android:text="Our Fired Rice Is Made From The Fitnest Ingredients And Veggies"
-                        android:textSize="15sp"
-                        android:layout_marginStart="30dp"
-                        android:fontFamily="@font/poppins_light"
-                        />
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_black_80"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.86"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.137">
 
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rescued"
-                            android:textSize="12sp"
-                            android:layout_marginStart="30dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Vegan"
-                            android:textSize="12sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                            app:layout_constraintStart_toEndOf="@+id/textView3"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="5dp">
 
                         <ImageView
-                            android:id="@+id/imageView3"
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:src="@drawable/timecircle"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/textView2"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/circle" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/circle" />
 
                         <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="30Minutes"
-                            android:textSize="12sp"
-                            android:layout_marginEnd="10dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:id="@+id/txt_numberStar"
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_black"
+                            android:text="4.5"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/star" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
-                <!--Natural Value-->
+                <!--Empty Layout-->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:orientation="vertical">
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/shape_white"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_dishes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
                     <TextView
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
-                        android:text="Natural Value"
-                        android:textSize="20sp"
-                        android:layout_marginEnd="45dp"
-                        android:layout_marginTop="10dp"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/poppins_medium"
-                        />
-                    <ImageView
-                        android:layout_width="175dp"
-                        android:layout_height="2dp"
-                        android:src="@drawable/line"
-                        android:background="@color/black"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <!-- Name Dishes-->
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="24dp"
+                    android:background="@drawable/shape_white"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_dishes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                    app:layout_constraintVertical_bias="0.78">
+
                     <TextView
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Our Fired Rice Is Made From The Fitnest Ingredients And Veggies"
-                        android:textSize="15sp"
+                        android:id="@+id/txt_namedishes"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/poppins_black"
+                        android:text="Jollof Riece"
+                        android:textAlignment="textStart"
+                        android:textSize="25dp" />
+
+                    <TextView
+                        android:id="@+id/txt_dishes_short_description"
+                        android:layout_width="190dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="15dp"
                         android:fontFamily="@font/poppins_light"
-                        />
-
-                    <ImageView
-                        android:layout_width="175dp"
-                        android:layout_height="2dp"
-                        android:src="@drawable/line"
-                        android:background="@color/black"/>
-
+                        android:text="Suhani's Stop, Kukapally"
+                        android:textAlignment="textStart"
+                        android:textSize="20dp" />
+                </LinearLayout>
+                <!--Heart-->
+                <ImageView
+                    android:id="@+id/btn_img_heart"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginBottom="60dp"
+                    android:src="@drawable/heart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.842"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Detail-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginTop="300dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="1.0"
+                android:background="@drawable/rectangle1053">
+                <!--Center Layout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                    app:layout_constraintVertical_bias="1.0"
+                    android:orientation="vertical">
+                    <!--Description And Value-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <ImageView
-                            android:layout_margin="5dp"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/icon_fire"/>
+                        <!--Description   -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Descripttion"
+                                android:textSize="20sp"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/poppins_medium"
+                                />
+                            <TextView
+                                android:id="@+id/txt_description"
+                                android:layout_width="175dp"
+                                android:layout_height="wrap_content"
+                                android:text="Our Fired Rice Is Made From The Fitnest Ingredients And Veggies"
+                                android:textSize="15sp"
+                                android:layout_marginStart="30dp"
+                                android:fontFamily="@font/poppins_light"
+                                />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
+                                <TextView
+                                    android:id="@+id/txt_description_short_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rescued"
+                                    android:textSize="12sp"
+                                    android:layout_marginStart="30dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_description_short_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vegan"
+                                    android:textSize="12sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                                    app:layout_constraintStart_toEndOf="@+id/txt_description_short_1"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/imageView3"
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:src="@drawable/timecircle"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@+id/txt_description_short_3_time"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_description_short_3_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="30Minutes"
+                                    android:textSize="12sp"
+                                    android:layout_marginEnd="10dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+                        <!--Natural Value-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="175dp"
+                                android:layout_height="wrap_content"
+                                android:text="Natural Value"
+                                android:textSize="20sp"
+                                android:layout_marginEnd="45dp"
+                                android:layout_marginTop="10dp"
+                                android:textAlignment="center"
+                                android:fontFamily="@font/poppins_medium"
+                                />
+                            <ImageView
+                                android:layout_width="175dp"
+                                android:layout_height="2dp"
+                                android:src="@drawable/line"
+                                android:background="@color/black"/>
+                            <LinearLayout
+                                android:layout_width="175dp"
+                                android:layout_height="90dp"
+                                android:orientation="vertical"
+                                >
+
+                                <!--txt_natural_index and txt_natural_index_value-->
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="15dp"
+                                    android:orientation="horizontal"
+                                    >
+                                    <TextView
+                                        android:id="@+id/txt_natural_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:text="Protein: "
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/txt_natural_1_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_light"
+                                        android:text="2.5g"
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="15dp"
+                                    android:orientation="horizontal"
+                                    >
+                                    <TextView
+                                        android:id="@+id/txt_natural_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:text="Protein: "
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/txt_natural_2_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_light"
+                                        android:text="2.5g"
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="15dp"
+                                    android:orientation="horizontal"
+                                    >
+                                    <TextView
+                                        android:id="@+id/txt_natural_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:text="Protein: "
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/txt_natural_3_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_light"
+                                        android:text="2.5g"
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="15dp"
+                                    android:orientation="horizontal"
+                                    >
+                                    <TextView
+                                        android:id="@+id/txt_natural_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:text="Protein: "
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/txt_natural_4_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_light"
+                                        android:text="2.5g"
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="15dp"
+                                    android:orientation="horizontal"
+                                    >
+                                    <TextView
+                                        android:id="@+id/txt_natural_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:text="Protein: "
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/txt_natural_5_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/poppins_light"
+                                        android:text="2.5g"
+                                        android:textSize="12sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            </LinearLayout>
+
+
+                            <ImageView
+                                android:layout_width="175dp"
+                                android:layout_height="2dp"
+                                android:src="@drawable/line"
+                                android:background="@color/black"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_margin="5dp"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/icon_fire"/>
+
+                                <TextView
+                                    android:layout_width="75dp"
+                                    android:layout_height="25dp"
+                                    android:id="@+id/txt_sumcalories"
+                                    android:text="145 cal"
+                                    android:textAlignment="center"
+                                    android:layout_gravity="center"
+                                    android:textSize="18sp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    />
+                                <TextView
+                                    android:layout_width="75dp"
+                                    android:layout_height="15dp"
+                                    android:text="Daily Value"
+                                    android:layout_gravity="center"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--InGradients-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:orientation="vertical">
                         <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="25dp"
-                            android:text="145 cal"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ingredients"
                             android:textSize="18sp"
-                            android:fontFamily="@font/poppins_medium"
-                            />
+                            android:fontFamily="@font/poppins_medium"/>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <!--List Image Ingredient-->
+                            <ImageView
+                                android:id="@+id/img_ingredient_1"
+                                android:layout_width="50dp"
+                                android:layout_height="45dp"
+                                android:background="@drawable/shape_white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/img_ingredient_2"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/img_ingredient_2"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                android:id="@+id/img_ingredient_2"
+                                android:layout_width="50dp"
+                                android:layout_height="45dp"
+                                android:layout_marginEnd="44dp"
+                                android:background="@drawable/shape_white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/img_ingredient_3"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                android:id="@+id/img_ingredient_3"
+                                android:layout_width="50dp"
+                                android:layout_height="45dp"
+                                android:layout_marginEnd="48dp"
+                                android:background="@drawable/shape_white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/img_ingredient_4"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                android:id="@+id/img_ingredient_4"
+                                android:layout_width="50dp"
+                                android:layout_height="45dp"
+                                android:background="@drawable/shape_white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <!--Addtions-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:orientation="vertical">
                         <TextView
-                            android:layout_width="75dp"
-                            android:layout_height="15dp"
-                            android:text="Daily Value"
-                            android:layout_gravity="center"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/poppins_medium"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Addtions"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/poppins_medium"/>
+                        <LinearLayout
+                            android:id="@+id/btn_layout_addtions"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="@drawable/rectangle115"
+                            android:onClick="editActions"
+                            android:clickable="true"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="250dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:text="VietNam"
+                                android:textSize="20sp"
+                                android:layout_marginStart="20dp"
+                                />
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="35dp"
+                                android:src="@drawable/arrow"
+                                />
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-            <!--InGradients-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ingredients"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/poppins_medium"/>
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/shape_white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/imageView4"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
-                        android:layout_marginEnd="44dp"
-                        android:background="@drawable/shape_white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView7"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
-                        android:layout_marginEnd="48dp"
-                        android:background="@drawable/shape_white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="50dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/shape_white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-
-            <!--Addtions-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Addtions"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/poppins_medium"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:background="@drawable/rectangle115"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="250dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:text="VietNam"
-                        android:textSize="20sp"
-                        android:layout_marginStart="20dp"
-                        />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="35dp"
-                        android:src="@drawable/arrow"
-                        />
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-<!--     Last Check-->
-
+    <!--Last Check-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/shape_red"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -406,7 +568,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txt_money_bill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
@@ -425,8 +587,8 @@
             android:layout_height="50dp"
             android:background="@drawable/shape_white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
-            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cart"
+            app:layout_constraintStart_toEndOf="@+id/txt_money_bill"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
@@ -444,6 +606,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
+                        android:id="@+id/btn_subtract"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -451,6 +614,7 @@
                         android:src="@drawable/subtraction" />
 
                     <TextView
+                        android:id="@+id/txt_number_dishes"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -463,6 +627,7 @@
                         />
 
                     <ImageView
+                        android:id="@+id/btn_plus"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -474,27 +639,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="36dp"
+            android:id="@+id/btn_cart"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/ellipse3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533">
+            app:layout_constraintVertical_bias="1.0">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:layout_marginEnd="8dp"
                 android:paddingBottom="10dp"
                 android:src="@drawable/iconmonstr_basket"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
