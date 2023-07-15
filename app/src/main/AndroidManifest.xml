@@ -13,16 +13,16 @@
         android:theme="@style/Theme.DeliveryApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.YourOrdersActivity"
+            android:name=".ui.fragments.YourOrdersFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.NotificationsActivity"
+            android:name=".ui.fragments.NotificationsFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.BookmarksActivity"
+            android:name=".ui.fragments.BookmarksFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PaymentActivity"
+            android:name=".ui.fragments.PaymentFragment"
             android:exported="false" />
         <activity
             android:name=".ui.activities.MainActivity"
