@@ -1,5 +1,9 @@
 package com.example.deliveryapp.pojo
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Food(
     val foodId:String? = null,
     val foodName:String? = null,
@@ -12,6 +16,4 @@ data class Food(
     val restaurantId:String? = null,
     val offerId: String? = null,
     val cartFoodId:String? = null
-){
-    public fun update(){}
-}
+) : Parcelable

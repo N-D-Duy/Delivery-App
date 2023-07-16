@@ -1,5 +1,8 @@
 package com.example.deliveryapp.pojo
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Order(
     val orderId:String? = null,
     val date:String? = null,
@@ -7,10 +10,4 @@ data class Order(
     val paid:Boolean? = false,
     val foodId:String? = null,
     val userId:String? = null
-){
-    public fun updateStatus(newStatus:String){
-        if(newStatus == "received"){
-            this.status = "received"
-        }
-    }
-}
+) : Parcelable
