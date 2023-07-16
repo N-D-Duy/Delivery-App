@@ -17,6 +17,7 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var test = 2;
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
