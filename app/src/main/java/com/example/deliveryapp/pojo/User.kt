@@ -1,17 +1,13 @@
 package com.example.deliveryapp.pojo
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class User(
     val userId:String? = null,
+    val avatarUrl:String? = null,
     val username: String? = null,
     val cartId:String? = null,
     val email:String? = null,
     val phone: String? = null
-){
-    public fun login(){}
-    public fun register(){}
-
-    public fun logout(){}
-
-    public fun update(){}
-
-}
+) : Parcelable
