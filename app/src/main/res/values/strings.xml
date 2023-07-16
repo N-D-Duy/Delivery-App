@@ -23,4 +23,5 @@
     <string name="edit">Edit</string>
     <string name="personal_details">Personal details</string>
     <string name="discount"> <strike>20% off</strike> </string>
+    <string name="old_price"> <strike>20K</strike> </string>
 </resources>
