@@ -1,4 +1,4 @@
-package com.example.deliveryapp.pojo
+package com.example.deliveryapp.model
 
 import com.google.firebase.firestore.ServerTimestamp
 import java.util.Date

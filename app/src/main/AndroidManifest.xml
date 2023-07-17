@@ -13,19 +13,19 @@
         android:theme="@style/Theme.DeliveryApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.fragments.YourOrdersFragment"
+            android:name=".view.fragments.YourOrdersFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.fragments.NotificationsFragment"
+            android:name=".view.fragments.NotificationsFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.fragments.BookmarksFragment"
+            android:name=".view.fragments.BookmarksFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.fragments.PaymentFragment"
+            android:name=".view.fragments.PaymentFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".view.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

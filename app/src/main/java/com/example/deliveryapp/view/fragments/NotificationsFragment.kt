@@ -1,6 +1,5 @@
-package com.example.deliveryapp.ui.fragments
+package com.example.deliveryapp.view.fragments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.R
 
-class BookmarksFragment : Fragment() {
+class NotificationsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -18,6 +17,6 @@ class BookmarksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bookmarks, container, false)
+        return inflater.inflate(R.layout.fragment_notifications, container, false)
     }
 }

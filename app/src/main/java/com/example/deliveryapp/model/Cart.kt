@@ -1,4 +1,4 @@
-package com.example.deliveryapp.pojo
+package com.example.deliveryapp.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class Cart(
     val cartId:String? = null,
     val userId:String? = null,
-    val cartFoodId:String? = null
+    val foodList:List<Food>? = null
 ) : Parcelable

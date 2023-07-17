@@ -1,16 +1,15 @@
-package com.example.deliveryapp.ui.activities
+package com.example.deliveryapp.view.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.deliveryapp.R
-import com.example.deliveryapp.adapter.HideBottomNavigationOnScrollBehavior
 import com.example.deliveryapp.databinding.ActivityMainBinding
-import com.example.deliveryapp.ui.fragments.AccountFragment
-import com.example.deliveryapp.ui.fragments.CartFragment
-import com.example.deliveryapp.ui.fragments.HomeFragment
-import com.example.deliveryapp.ui.fragments.OffersFragment
+import com.example.deliveryapp.view.fragments.AccountFragment
+import com.example.deliveryapp.view.fragments.CartFragment
+import com.example.deliveryapp.view.fragments.HomeFragment
+import com.example.deliveryapp.view.fragments.OffersFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

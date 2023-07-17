@@ -1,4 +1,4 @@
-package com.example.deliveryapp.pojo
+package com.example.deliveryapp.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 

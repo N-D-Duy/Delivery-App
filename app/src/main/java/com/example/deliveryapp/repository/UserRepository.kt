@@ -1,13 +1,23 @@
 package com.example.deliveryapp.repository
 
+import com.example.deliveryapp.model.User
+import com.example.deliveryapp.util.UiState
+import kotlinx.coroutines.flow.Flow
+
 interface UserRepository {
-    fun getUser(){}
+    fun getUser(userId: String): Flow<Result<User>>
 
-    fun login(){}
 
-    fun register(){}
+    fun loginUser(email: String, password: String): Flow<Result<User>>
 
-    fun logout(){}
 
-    fun updateUser(){}
+    fun registerUser(email: String, password: String): Flow<Result<User>>
+
+
+    fun logoutUser(userId: String): Flow<UiState<Unit>>
+
+    fun deleteUser(userId: String): Flow<UiState<Unit>>
+
+
+    fun updateUser(userId: String, user: User): Flow<UiState<Unit>>
 }
