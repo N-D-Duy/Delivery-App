@@ -1,8 +1,15 @@
 package com.example.deliveryapp.repository
 
+import com.example.deliveryapp.model.History
+import com.example.deliveryapp.util.UiState
+import kotlinx.coroutines.flow.Flow
+import java.util.Date
+
 
 interface HistoryRepository{
-    fun getQueries(){}
+    fun getSearchHistory(userId: String): Flow<Result<History>>
 
-    fun updateQueries(){}
+    fun addSearchQuery(userId: String, query: Map<String, Date>, ): Flow<UiState<Unit>>
+
+    fun clearSearchHistory(userId: String): Flow<UiState<Unit>>
 }
