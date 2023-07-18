@@ -8,6 +8,7 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ActivityMainBinding
 import com.example.deliveryapp.view.fragments.AccountFragment
 import com.example.deliveryapp.view.fragments.CartFragment
+import com.example.deliveryapp.view.fragments.DetailFoodFragment
 import com.example.deliveryapp.view.fragments.HomeFragment
 import com.example.deliveryapp.view.fragments.OffersFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    fragment = HomeFragment()
+                    fragment = DetailFoodFragment()
                     loadFragment(fragment)
                     return@OnNavigationItemSelectedListener true
                 }

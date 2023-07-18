@@ -378,7 +378,7 @@
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
                                         android:layout_margin="5dp"
-                                        android:src="@drawable/icon_fire" />
+                                        android:src="@drawable/icon_fire_img" />
 
                                     <TextView
                                         android:id="@+id/txt_sumcalories"
