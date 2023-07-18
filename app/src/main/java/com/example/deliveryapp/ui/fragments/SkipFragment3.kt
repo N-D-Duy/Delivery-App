@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.deliveryapp.R
+import com.example.deliveryapp.databinding.FragmentSkip3Binding
 
 
 class SkipFragment3 : Fragment() {
-
+    private lateinit var binding : FragmentSkip3Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,8 +20,19 @@ class SkipFragment3 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        binding = FragmentSkip3Binding.inflate(inflater, container, false)
+
+        binding.tvSkip3.setOnClickListener {
+
+        }
+
+
+        binding.btnWelcome.setOnClickListener {
+
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_skip3, container, false)
+        return binding.root
     }
 
 

@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.deliveryapp.R
 
-import com.example.deliveryapp.adapter.ViewPagerAdapter
-
-import com.example.deliveryapp.adapter.HideBottomNavigationOnScrollBehavior
+import com.example.deliveryapp.adapter.WelcomeViewPagerAdapter
 
 import com.example.deliveryapp.databinding.ActivityMainBinding
 import com.example.deliveryapp.ui.fragments.AccountFragment
@@ -72,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-     val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+     val adapter = WelcomeViewPagerAdapter(supportFragmentManager, lifecycle)
 
 
 }
