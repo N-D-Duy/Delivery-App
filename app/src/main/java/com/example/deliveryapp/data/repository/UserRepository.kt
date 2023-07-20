@@ -1,4 +1,4 @@
-package com.example.deliveryapp.repository
+package com.example.deliveryapp.data.repository
 
 import com.example.deliveryapp.model.User
 import com.example.deliveryapp.util.UiState

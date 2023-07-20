@@ -1,4 +1,4 @@
-package com.example.deliveryapp.repository
+package com.example.deliveryapp.data.repository
 
 import com.example.deliveryapp.model.Cart
 import com.example.deliveryapp.util.FirebaseCollections
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.lang.Error
 
-class CartRepositoryImp(val database: FirebaseFirestore): CartRepository{
+class CartRepositoryImp(val database: FirebaseFirestore): CartRepository {
     //
     override fun getCart(userId: String): Flow<Result<Cart?>> {
         return flow {
