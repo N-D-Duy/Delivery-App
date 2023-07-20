@@ -11,6 +11,7 @@ import com.example.deliveryapp.ui.account.AccountFragment
 import com.example.deliveryapp.ui.cart.CartFragment
 import com.example.deliveryapp.ui.home.HomeFragment
 import com.example.deliveryapp.ui.offer.OffersFragment
+import com.example.deliveryapp.ui.others.FoodDetailFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
