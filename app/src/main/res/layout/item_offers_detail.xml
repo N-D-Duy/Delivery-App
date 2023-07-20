@@ -149,7 +149,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:drawableStartCompat="@drawable/icon_fire"
+                app:drawableStartCompat="@drawable/image_fire"
                 android:text="145 kcal"
                 android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@id/offers_detail_rate"

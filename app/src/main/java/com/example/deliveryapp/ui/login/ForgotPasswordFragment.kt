@@ -1,4 +1,4 @@
-package com.example.deliveryapp.ui.fragments
+package com.example.deliveryapp.ui.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.deliveryapp.R
 
 
-class ForgotPasssFragment : Fragment() {
+class ForgotPasswordFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

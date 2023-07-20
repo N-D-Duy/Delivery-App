@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF470B"
-    tools:context=".ui.fragments.SkipFragment1">
+    tools:context=".ui.welcome.SkipFragment1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
