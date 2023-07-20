@@ -1,4 +1,4 @@
-package com.example.deliveryapp.view.activities
+package com.example.deliveryapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ActivityMainBinding
-import com.example.deliveryapp.view.fragments.AccountFragment
-import com.example.deliveryapp.view.fragments.CartFragment
-import com.example.deliveryapp.view.fragments.HomeFragment
-import com.example.deliveryapp.view.fragments.OffersFragment
+import com.example.deliveryapp.ui.account.AccountFragment
+import com.example.deliveryapp.ui.cart.CartFragment
+import com.example.deliveryapp.ui.home.HomeFragment
+import com.example.deliveryapp.ui.offer.OffersFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
