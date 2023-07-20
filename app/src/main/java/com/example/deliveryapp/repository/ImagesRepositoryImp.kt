@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.flow
 class ImagesRepositoryImp(val database: FirebaseFirestore) : ImagesRepository {
     //fetch data
     override fun getImagesByFoodId(foodId: String): Flow<Result<ImageFood>> = callbackFlow {
-
         //tham chieu den document image can
         val imageRef = database.collection(FirebaseCollections.IMAGE).document(foodId)
             .get()

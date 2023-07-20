@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'com.google.gms.google-services'
     id 'kotlin-parcelize'
 }
 
@@ -24,11 +23,12 @@ android {
         //...
         dependencies {
             classpath 'com.android.tools.build:gradle:7.2.1'
-        }
 
+            // ...
+        }
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
@@ -47,8 +47,8 @@ android {
     }
 }
 
-dependencies {
 
+dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation group: 'com.google.android.material', name: 'material', version: '1.1.0-alpha05'
@@ -60,6 +60,7 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation "com.tbuonomo:dotsindicator:5.0"
 
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
     implementation 'com.google.firebase:firebase-analytics-ktx'
@@ -67,11 +68,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
     implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
     implementation 'com.google.android.gms:play-services-auth:20.6.0'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.7.0'
     implementation 'com.sun.mail:javax.mail:1.6.2'
 
-    implementation 'com.google.dagger:hilt-android:2.40.5'
-    kapt 'com.google.dagger:hilt-android-compiler:2.40.5'
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'
 }
