@@ -1,4 +1,4 @@
-package com.example.deliveryapp.view.fragments
+package com.example.deliveryapp.ui.others
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.R
 
-class SkipFragment1 : Fragment() {
+class BookmarksFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -17,7 +17,6 @@ class SkipFragment1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_skip1, container, false)
+        return inflater.inflate(R.layout.fragment_bookmarks, container, false)
     }
 }
