@@ -27,6 +27,9 @@ android {
 
             // ...
         }
+        repositories{
+            mavenCentral()
+        }
     }
 
     buildFeatures {
@@ -49,7 +52,7 @@ android {
 }
 
 dependencies {
-
+    def room_version = "2.5.2"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation group: 'com.google.android.material', name: 'material', version: '1.1.0-alpha05'
@@ -73,5 +76,15 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.6.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.7.0'
     implementation 'com.sun.mail:javax.mail:1.6.2'
+
+    //room
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
+    //facebook
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
 }

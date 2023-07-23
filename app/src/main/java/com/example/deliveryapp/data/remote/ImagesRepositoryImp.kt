@@ -1,15 +1,13 @@
-package com.example.deliveryapp.data.repository
+package com.example.deliveryapp.data.remote
 
 import com.example.deliveryapp.model.ImageFood
-import com.example.deliveryapp.util.FirebaseCollections
-import com.example.deliveryapp.util.UiState
+import com.example.deliveryapp.utils.FirebaseCollections
+import com.example.deliveryapp.utils.UiState
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.flow
 
 class ImagesRepositoryImp(val database: FirebaseFirestore) : ImagesRepository {
     //fetch data

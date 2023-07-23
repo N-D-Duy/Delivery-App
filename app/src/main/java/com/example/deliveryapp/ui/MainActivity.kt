@@ -72,6 +72,6 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 //     val adapter = WelcomeViewPagerAdapter(supportFragmentManager, lifecycle)
-
+//sua lai
 
 }

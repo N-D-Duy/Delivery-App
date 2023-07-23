@@ -1,8 +1,8 @@
-package com.example.deliveryapp.data.repository
+package com.example.deliveryapp.data.remote
 
 import com.example.deliveryapp.model.Food
-import com.example.deliveryapp.util.FirebaseCollections
-import com.example.deliveryapp.util.UiState
+import com.example.deliveryapp.utils.FirebaseCollections
+import com.example.deliveryapp.utils.UiState
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -130,4 +130,6 @@ class FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
             }
         awaitClose()
     }
+
+
 }

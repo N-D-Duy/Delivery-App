@@ -1,4 +1,4 @@
-package com.example.deliveryapp.util
+package com.example.deliveryapp.utils
 
 sealed class UiState<out T> {
     object Loading : UiState<Nothing>()
