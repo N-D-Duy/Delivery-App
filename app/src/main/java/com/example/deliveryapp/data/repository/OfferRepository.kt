@@ -5,9 +5,9 @@ import com.example.deliveryapp.util.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface OfferRepository {
-    fun getRestaurantOffers(restaurantId: String): Flow<Result<List<Offer>>>
+    fun getRestaurantOffers(restaurantId: String): Flow<Result<Offer>>
 
-    fun getFoodOffers(foodId: String): Flow<Result<List<Offer>>>
+    fun getFoodOffers(foodId: String): Flow<Result<Offer>>
 
     fun getFreeShippingOffers(): Flow<Result<List<Offer>>>
 

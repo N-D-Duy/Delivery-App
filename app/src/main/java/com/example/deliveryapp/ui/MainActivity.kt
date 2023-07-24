@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.navigation_offers -> {
 //                    toolbar.title = "Offers"
-                    fragment = OffersFragment()
+                    fragment = FoodDetailFragment()
+                    //abc
                     loadFragment(fragment)
                     return@OnNavigationItemSelectedListener true
                 }
