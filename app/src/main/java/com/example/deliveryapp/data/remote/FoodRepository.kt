@@ -1,7 +1,7 @@
-package com.example.deliveryapp.data.repository
+package com.example.deliveryapp.data.remote
 
 import com.example.deliveryapp.model.Food
-import com.example.deliveryapp.util.UiState
+import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface FoodRepository {

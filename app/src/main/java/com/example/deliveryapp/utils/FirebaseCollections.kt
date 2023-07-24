@@ -1,4 +1,4 @@
-package com.example.deliveryapp.util
+package com.example.deliveryapp.utils
 
 object FirebaseCollections{
     val CART = "carts"

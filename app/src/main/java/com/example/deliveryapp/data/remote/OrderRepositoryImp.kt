@@ -1,7 +1,7 @@
-package com.example.deliveryapp.data.repository
+package com.example.deliveryapp.data.remote
 
 import com.example.deliveryapp.model.Order
-import com.example.deliveryapp.util.UiState
+import com.example.deliveryapp.utils.UiState
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

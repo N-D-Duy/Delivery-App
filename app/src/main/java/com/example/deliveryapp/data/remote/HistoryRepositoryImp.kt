@@ -1,10 +1,9 @@
-package com.example.deliveryapp.data.repository
+package com.example.deliveryapp.data.remote
 
 import com.example.deliveryapp.model.History
-import com.example.deliveryapp.util.FirebaseCollections
-import com.example.deliveryapp.util.UiState
+import com.example.deliveryapp.utils.FirebaseCollections
+import com.example.deliveryapp.utils.UiState
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -64,5 +63,30 @@ class HistoryRepositoryImp(val database: FirebaseFirestore) : HistoryRepository 
                     channel.close()
                 }
         awaitClose()
+    }
+
+    override fun updateHistory(
+        userId: String,
+        newQuery: String,
+        timestamp: String
+    ): Flow<UiState<Unit>> = callbackFlow{
+        val historyRef = database.collection(FirebaseCollections.HISTORY)
+            .document(userId)
+            historyRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    // History for the user already exists
+                    val historyData = documentSnapshot.toObject(History::class.java)
+                    // Update the queries map with the new query and timestamp
+                    historyData?.query?.put(newQuery, timestamp)
+
+                    // Update the "queries" field in the Firestore document
+                    historyRef.set(historyData as History)
+                } else {
+                    // History for the user does not exist, create a new document
+                    val newHistory = History(userId, mutableMapOf(newQuery to timestamp))
+                    historyRef.set(newHistory)
+                }
+            }
     }
 }
