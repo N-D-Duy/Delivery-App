@@ -13,4 +13,6 @@ interface DataManager {
             mType = type
         }
     }
+
+
 }

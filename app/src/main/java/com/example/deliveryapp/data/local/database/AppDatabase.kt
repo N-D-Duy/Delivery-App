@@ -1,4 +1,4 @@
-package com.example.deliveryapp.data.local
+package com.example.deliveryapp.data.local.database
 
 import android.content.Context
 import androidx.room.Database

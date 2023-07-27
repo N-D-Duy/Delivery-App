@@ -43,4 +43,16 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
 
         }
     }
+
+    override fun insertUser(user: User): Flow<UiState<Unit>> = flow{
+
+    }
+
+    override fun insertListUser(users: List<User>): Flow<UiState<Unit>> = flow{
+
+    }
+
+    override fun getUserByName(name: String): Flow<Result<User>> = flow{
+
+    }
 }

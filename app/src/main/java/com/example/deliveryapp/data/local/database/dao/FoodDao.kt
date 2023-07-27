@@ -10,11 +10,11 @@ import com.example.deliveryapp.model.Food
 
 @Dao
 interface FoodDao{
-    @Delete
-    fun deleteFood(vararg foods: Food?)
+    @Query("DELETE FROM food WHERE foodId in (:foodIds)")
+    fun deleteFood(vararg foodIds: String?)
 
     @Query("Select * from food")
-    fun getAllFood(): List<Food?>?
+    fun getAllFood(): List<Food>
 
     @Query("Select * from food where foodId IN (:foodIds)")
     fun getFood(foodIds: String): Food?

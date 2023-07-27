@@ -11,11 +11,14 @@ import com.example.deliveryapp.model.User
 
 @Dao
 interface UserDao {
-    @Delete
-    fun delete(vararg users: User?)
+    @Query("DELETE FROM user WHERE userId in (:userIds)")
+    fun delete(vararg userIds: String?)
 
     @Query("SELECT * FROM user WHERE user_name LIKE :name LIMIT 1")
     fun findByName(name: String?): User?
+
+    @Query("SELECT * FROM user WHERE userId LIKE :uid LIMIT 1")
+    fun findById(uid: String?): User?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(user: User?)
@@ -24,11 +27,11 @@ interface UserDao {
     fun insertAll(users: List<User?>?)
 
     @Query("SELECT * FROM user")
-    fun loadAll(): List<User?>?
+    fun loadAll(): List<User>
 
     @Update
     fun updateUsers(vararg user: User?)
 
     @Query("SELECT * FROM user WHERE userId IN (:userIds)")
-    fun loadAllByIds(userIds: List<String?>?): List<User?>?
+    fun loadAllByIds(userIds: List<String?>?): List<User>
 }

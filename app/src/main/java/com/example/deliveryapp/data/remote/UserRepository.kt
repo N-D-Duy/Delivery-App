@@ -20,4 +20,11 @@ interface UserRepository {
 
 
     fun updateUser(userId: String, user: User): Flow<UiState<Unit>>
+
+    fun insertUser(user: User):Flow<UiState<Unit>>
+
+    fun insertListUser(users: List<User>): Flow<UiState<Unit>>
+
+    fun getUserByName(name: String): Flow<Result<User>>
+
 }
