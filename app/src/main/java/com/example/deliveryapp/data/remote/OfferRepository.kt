@@ -13,7 +13,7 @@ interface OfferRepository {
 
     fun addOffer(offer: Offer): Flow<UiState<Unit>>
 
-    fun updateOffer(offer: Offer): Flow<UiState<Unit>>
+    fun updateOffer(offerId: String,offer: Offer): Flow<UiState<Unit>>
 
     fun deleteOffer(offerId: String): Flow<UiState<Unit>>
 
