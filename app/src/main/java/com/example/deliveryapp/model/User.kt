@@ -11,6 +11,9 @@ data class User(
     @PrimaryKey
     val userId:String? = null,
 
+    @ColumnInfo(name = "address")
+    val address:String? = null,
+
     @ColumnInfo(name = "avatar_url")
     val avatarUrl:String? = null,
 

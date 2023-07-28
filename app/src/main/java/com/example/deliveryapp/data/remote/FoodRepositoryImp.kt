@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
+class   FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
     //to do
     override fun update(food: Food, foodId: String): Flow<UiState<Unit>> {
         return flow {
