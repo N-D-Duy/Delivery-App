@@ -9,6 +9,8 @@ interface FoodRepository {
 
     fun addFood(food:Food):Flow<UiState<Unit>>
 
+    fun addListFood(foods: List<Food>): Flow<UiState<Unit>>
+
     fun removeFood(foodId:String):Flow<UiState<Unit>>
 
     fun getFoodList(): Flow<Result<List<Food>>>

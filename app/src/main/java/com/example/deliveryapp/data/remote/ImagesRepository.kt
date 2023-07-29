@@ -10,4 +10,5 @@ interface ImagesRepository{
     fun addImage(foodId: String, newUrl:Map<String, String>): Flow<UiState<Unit>>
 
     fun removeImage(foodId: String, urlImage:String): Flow<UiState<Unit>>
+
 }

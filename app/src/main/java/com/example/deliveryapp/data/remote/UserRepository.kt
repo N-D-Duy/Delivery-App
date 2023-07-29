@@ -5,7 +5,7 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    fun getUser(userId: String): Flow<Result<User>>
+    fun getUserById(userId: String): Flow<Result<User>>
 
 
     fun loginUser(email: String, password: String): Flow<Result<User>>

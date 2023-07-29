@@ -16,7 +16,7 @@ class OrderRepositoryImp(val database:FirebaseFirestore): OrderRepository {
         val orderRef = database.collection(FirebaseCollections.ORDER)
             .document(userId)
 
-        var order = getOrder(userId) as Order
+        val order = getOrder(userId) as Order
 
         order.status = newStatus
 
@@ -30,9 +30,10 @@ class OrderRepositoryImp(val database:FirebaseFirestore): OrderRepository {
         orderRef.update(dataMap)
             .addOnSuccessListener {
                 channel.trySend(UiState.Success(Unit)).isSuccess
+                channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+                channel.trySend(UiState.Error("update status order failed ${exception.message}")).isSuccess
                 channel.close()
             }
         awaitClose()
@@ -47,7 +48,7 @@ class OrderRepositoryImp(val database:FirebaseFirestore): OrderRepository {
                 channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
+                channel.trySend(Result.failure(Throwable("get order failed ${exception.message}"))).isSuccess
                 channel.close()
             }
         awaitClose()
@@ -61,7 +62,7 @@ class OrderRepositoryImp(val database:FirebaseFirestore): OrderRepository {
                 channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+                channel.trySend(UiState.Error("add order failed ${exception.message}")).isSuccess
                 channel.close()
             }
         awaitClose()
@@ -74,9 +75,10 @@ class OrderRepositoryImp(val database:FirebaseFirestore): OrderRepository {
         orderRef.delete()
             .addOnSuccessListener {
                 channel.trySend(UiState.Success(Unit)).isSuccess
+                channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+                channel.trySend(UiState.Error("remove order failed ${exception.message}")).isSuccess
                 channel.close()
             }
         awaitClose()

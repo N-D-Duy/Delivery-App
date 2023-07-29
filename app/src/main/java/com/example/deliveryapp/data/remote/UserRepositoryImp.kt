@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 
 class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
     //implement here and fetch data,...
-    override fun getUser(userId: String): Flow<Result<User>> = callbackFlow {
+    override fun getUserById(userId: String): Flow<Result<User>> = callbackFlow {
         database.collection(FirebaseCollections.USER).document(userId)
             .get()
             .addOnSuccessListener {
@@ -70,9 +70,10 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
         userRef.delete()
             .addOnSuccessListener {
                 channel.trySend(UiState.Success(Unit)).isSuccess
+                channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+                channel.trySend(UiState.Error("delete user failed ${exception.message}")).isSuccess
                 channel.close()
             }
         awaitClose()
@@ -93,9 +94,10 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
         userRef.update(dataMap)
             .addOnSuccessListener {
                 channel.trySend(UiState.Success(Unit)).isSuccess
+                channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+                channel.trySend(UiState.Error("update user failed ${exception.message}")).isSuccess
                 channel.close()
             }
         awaitClose()

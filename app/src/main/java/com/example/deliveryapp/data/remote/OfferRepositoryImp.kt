@@ -24,7 +24,7 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
                 docRes = it.toObject(Restaurant::class.java)!!
             }
             .addOnFailureListener {exception ->
-                channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
+                channel.trySend(Result.failure(Throwable("get res offer failed ${exception.message}"))).isSuccess
                 channel.close()
             }
         if(docRes.offerId != null){
@@ -36,7 +36,7 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
                     channel.close()
                 }
                 .addOnFailureListener {exception ->
-                    channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
+                    channel.trySend(Result.failure(Throwable("get res offer failed ${exception.message}"))).isSuccess
                     channel.close()
                 }
         }
@@ -51,7 +51,7 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
                 docFood = it.toObject(Food::class.java)!!
             }
             .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
+                channel.trySend(Result.failure(Throwable("get food offer failed ${exception.message}"))).isSuccess
                 channel.close()
             }
         if (docFood.offerId != null) {
@@ -63,7 +63,7 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
                     channel.close()
                 }
                 .addOnFailureListener { exception ->
-                    channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
+                    channel.trySend(Result.failure(Throwable("get food offer failed ${exception.message}"))).isSuccess
                     channel.close()
                 }
         }
@@ -84,7 +84,7 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
                 channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+                channel.trySend(UiState.Error("add offer failed ${exception.message}")).isSuccess
                 channel.close()
             }
         awaitClose()
@@ -102,9 +102,10 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
         offerRef.update(dataMap)
             .addOnSuccessListener {
             channel.trySend(UiState.Success(Unit)).isSuccess
+            channel.close()
             }
             .addOnFailureListener { exception ->
-            channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+            channel.trySend(UiState.Error("update offer failed ${exception.message}")).isSuccess
             channel.close()
             }
         awaitClose()
@@ -117,9 +118,10 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
         offerRef.delete()
             .addOnSuccessListener {
             channel.trySend(UiState.Success(Unit)).isSuccess
+            channel.close()
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
+                channel.trySend(UiState.Error("delete offer failed ${exception.message}")).isSuccess
                 channel.close()
             }
         awaitClose()
