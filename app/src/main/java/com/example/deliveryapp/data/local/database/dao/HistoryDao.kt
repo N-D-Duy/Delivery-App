@@ -8,7 +8,7 @@ import com.example.deliveryapp.model.History
 
 @Dao
 interface HistoryDao {
-    @Query("Select * from history where id like :uid")
+    @Query("Select * from history where uid like :uid")
     fun getHistoryByUserId(uid: String?): History
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -16,7 +16,7 @@ interface HistoryDao {
 
 
     //bỏ, thay bằng việc update default cho history
-    @Query("DELETE FROM history WHERE id = :uid")
+    @Query("DELETE FROM history WHERE uid = :uid")
     fun deleteHistoryForUser(uid: String)
 
     @Query("Select * from history")

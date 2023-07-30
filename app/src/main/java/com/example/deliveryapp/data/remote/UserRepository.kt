@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 interface UserRepository {
     fun getUserById(userId: String): Flow<Result<User>>
 
+    fun getAllUser(): Flow<List<User>>
+
 
     fun loginUser(email: String, password: String): Flow<Result<User>>
 

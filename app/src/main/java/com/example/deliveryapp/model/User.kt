@@ -1,5 +1,6 @@
 package com.example.deliveryapp.model
 import android.os.Parcelable
+
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,8 +9,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "user")
 data class User(
-    @PrimaryKey
-    val userId:String? = null,
+    @PrimaryKey(autoGenerate = true)
+    val userId:Int,
 
     @ColumnInfo(name = "address")
     val address:String? = null,

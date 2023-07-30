@@ -44,17 +44,13 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
     }
 
     override fun getFoodOffers(foodId: String): Flow<Result<Offer>> = callbackFlow {
-        var docFood = Food()
-        database.collection(FirebaseCollections.FOOD).document(foodId)
+
+        val docFood = database.collection(FirebaseCollections.FOOD).document(foodId)
             .get()
-            .addOnSuccessListener {
-                docFood = it.toObject(Food::class.java)!!
-            }
-            .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("get food offer failed ${exception.message}"))).isSuccess
-                channel.close()
-            }
-        if (docFood.offerId != null) {
+            .await()
+            .toObject(Food::class.java)
+
+        if (docFood?.offerId != null) {
             database.collection(FirebaseCollections.OFFER).document(docFood.offerId.toString())
                 .get()
                 .addOnSuccessListener {

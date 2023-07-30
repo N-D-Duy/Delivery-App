@@ -1,5 +1,6 @@
 package com.example.deliveryapp.data
 
+import com.example.deliveryapp.data.local.database.DbHelper
 import com.example.deliveryapp.model.Cart
 import com.example.deliveryapp.model.Food
 import com.example.deliveryapp.model.History
@@ -8,8 +9,9 @@ import com.example.deliveryapp.model.Offer
 import com.example.deliveryapp.model.Order
 import com.example.deliveryapp.model.Restaurant
 import com.example.deliveryapp.model.User
+import kotlinx.coroutines.flow.Flow
 
-interface DataManager {
+interface DataManager{
     enum class LoggedInMode(val type: Int) {
         LOGGED_IN_MODE_LOGGED_OUT(0),
         LOGGED_IN_MODE_GOOGLE(1),
@@ -26,102 +28,101 @@ interface DataManager {
     // get data
 
         //User
-    fun getUsers(): List<User>?
+    suspend fun getUsers(): Flow<List<User>?>
 
-    fun getUserById(uid: String): User?
-
-    fun getUserByName(name: String): User?
+    suspend fun getUserById(uid: String): Flow<User?>
+    suspend fun getUserByName(name: String): Flow<User?>
 
 
         //Food
-    fun getFoods(): List<Food>?
+    suspend fun getFoods(): Flow<List<Food>?>
 
-    fun getFoodById(foodId: String): Food?
+    suspend fun getFoodById(foodId: String): Flow<Food?>
 
-    fun getFoodByName(name: String): Food?
+    suspend fun getFoodByName(name: String): Flow<Food?>
 
 
         //History
-    fun getAllHistory(): List<History?>?
+    suspend fun getAllHistory(): Flow<List<History?>?>
 
-    fun getHistoryForUser(uid: String): User?
+    suspend fun getHistoryForUser(uid: String): Flow<User?>
 
         //Cart
-    fun getCartByUserId(uid: String): Cart?
+    suspend fun getCartByUserId(uid: String): Flow<Cart?>
 
         //Offer
-    fun getOfferForFood(foodId: String): Offer?
+    suspend fun getOfferForFood(foodId: String): Flow<Offer?>
 
-    fun getOfferForRestaurant(resId: String): Restaurant?
+    suspend fun getOfferForRestaurant(resId: String): Flow<Restaurant?>
 
-    fun getFreeShip()
+    suspend fun getFreeShip()
         //Order
-    fun getOrderByUserId(uid: String): Order?
+    suspend fun getOrderByUserId(uid: String): Flow<Order?>
 
 
 
 
     //set data
         //Food
-    fun insertFood(food: Food?)
+    suspend fun insertFood(food: Food?)
 
-    fun insertFoods(foods: List<Food?>?)
+    suspend fun insertFoods(foods: List<Food?>?)
 
-    fun updateFoods(vararg foods: Food?)
+    suspend fun updateFoods(vararg foods: Food?)
 
         //User
-    fun insertUser(user: User?)
+    suspend fun insertUser(user: User?)
 
-    fun insertUsers(users: List<User?>?)
+    suspend fun insertUsers(users: List<User?>?)
 
-    fun updateUsers(vararg user: User?)
+    suspend fun updateUsers(vararg user: User?)
 
         //History
-    fun updateOrSetDefaultUser(history: History)
+    suspend fun updateOrSetDefaultUser(history: History)
 
         //Cart
-    fun updateCart(userId: String, foodId: String, quantity: Int)
+    suspend fun updateCart(userId: String, foodId: String, quantity: Int)
 
-    fun addFoodIntoCart(userId: String, foodId: String, quantity: Int)
+    suspend fun addFoodIntoCart(userId: String, foodId: String, quantity: Int)
 
         //Image
-    fun updateImage()
+    suspend fun updateImage()
 
         //Offer
-    fun updateOffer(offerId: String, offer: Offer)
+    suspend fun updateOffer(offerId: String, offer: Offer)
 
-    fun addOffer(offer: Offer)
+    suspend fun addOffer(offer: Offer)
 
         //Order
-    fun updateOrder(newStatus: String, userId: String)
+    suspend fun updateOrder(newStatus: String, userId: String)
 
-    fun addOrder(order: Order, userId: String)
+    suspend fun addOrder(order: Order, userId: String)
 
 
 
 
 
     //clear data
-    fun deleteUser(userId: String?)
+    suspend fun deleteUser(userId: String?)
 
-    fun deleteImage()
+    suspend fun deleteImage()
 
-    fun deleteFood(foodId: String)
+    suspend fun deleteFood(foodId: String)
 
-    fun deleteHistory(uid: String)
+    suspend fun deleteHistory(uid: String)
 
-    fun deleteOffer(offerId: String)
+    suspend fun deleteOffer(offerId: String)
 
-    fun deleteOrder(orderId: String)
+    suspend fun deleteOrder(orderId: String)
 
-    fun deleteCart(uid: String)
+    suspend fun deleteCart(uid: String)
 
 
     //others
-    fun login(mode: LoggedInMode?)
+    suspend fun login(mode: LoggedInMode?)
 
-    fun logout()
+    suspend fun logout()
 
-    fun register():User
+    suspend fun register():User
 
 }

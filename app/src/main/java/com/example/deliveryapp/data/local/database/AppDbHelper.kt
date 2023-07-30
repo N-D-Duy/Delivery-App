@@ -59,7 +59,7 @@ class AppDbHelper( database: AppDatabase): DbHelper {
 
 
 
-    override fun getAlFoods(): Flow<List<Food>> = flow{
+    override fun getAllFoods(): Flow<List<Food>> = flow{
         emit(mAppDatabase.foodDao().getAllFood())
     }
 

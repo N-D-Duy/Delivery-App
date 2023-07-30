@@ -10,6 +10,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
 
 class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
     //implement here and fetch data,...
@@ -28,6 +29,11 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
         awaitClose()
     }
 
+    override fun getAllUser(): Flow<List<User>> = flow{
+
+
+    }
+
     override fun loginUser(email: String, password: String): Flow<Result<User>>  = callbackFlow{
         val userRef = database.collection(FirebaseCollections.USER).whereEqualTo("email", email)
         userRef.get()
@@ -44,7 +50,7 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
     }
 
     override fun registerUser(email: String, password: String): Flow<Result<User>> = callbackFlow {
-        val registerRef = database.collection(FirebaseCollections.USER).document()
+        /*val registerRef = database.collection(FirebaseCollections.USER).document()
         val newUser = User(email,password)
         registerRef.set(newUser)
             .addOnSuccessListener {
@@ -55,7 +61,7 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
                 channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
                 channel.close()
             }
-        awaitClose()
+        awaitClose()*/
     }
 
     override fun logoutUser(userId: String): Flow<UiState<Unit>> = callbackFlow {

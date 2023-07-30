@@ -4,13 +4,16 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.deliveryapp.utils.NutritionConverter
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "food")
+@TypeConverters(NutritionConverter::class)
 data class Food(
-    @PrimaryKey
-    val foodId:String? = null,
+    @PrimaryKey(autoGenerate = true)
+    val foodId:Int,
 
     @ColumnInfo(name = "food_name")
     val foodName:String? = null,
@@ -27,8 +30,10 @@ data class Food(
     @ColumnInfo(name = "description")
     val description:String? = null,
 
+
     @ColumnInfo(name = "nutrition")
-    val nutrition: Nutrition? = null,
+
+    val nutrition: Nutrition,
 
     @ColumnInfo(name = "rate")
     val rate:String? = null,

@@ -29,5 +29,5 @@ interface FoodDao{
     fun updateFood(vararg foods: Food?)
 
     @Query("Select * from food where food_name like :name")
-    fun getFoodByName(name: String?)
+    fun getFoodByName(name: String?): Food?
 }

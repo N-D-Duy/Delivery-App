@@ -23,7 +23,7 @@ interface DbHelper {
 
 
     //food
-    fun getAlFoods(): Flow<List<Food>>
+    fun getAllFoods(): Flow<List<Food>>
 
     fun insertFood(food: Food): Flow<UiState<Unit>>
 
