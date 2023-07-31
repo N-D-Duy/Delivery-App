@@ -9,6 +9,7 @@ import com.example.deliveryapp.model.Offer
 import com.example.deliveryapp.model.Order
 import com.example.deliveryapp.model.Restaurant
 import com.example.deliveryapp.model.User
+import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface DataManager{
@@ -37,7 +38,7 @@ interface DataManager{
         //Food
     suspend fun getFoods(): Flow<List<Food>?>
 
-    suspend fun getFoodById(foodId: String): Flow<Food?>
+    suspend fun getFoodById(foodId: String): Flow<UiState<Food?>>
 
     suspend fun getFoodByName(name: String): Flow<Food?>
 

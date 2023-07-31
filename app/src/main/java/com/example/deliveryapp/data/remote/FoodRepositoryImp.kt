@@ -13,9 +13,8 @@ import kotlinx.coroutines.tasks.await
 
 class  FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
     //to do
-    override fun update(food: Food, foodId: String): Flow<UiState<Unit>> {
-        return flow {
-            emit(UiState.Loading)
+    override suspend fun update(food: Food, foodId: String): UiState<Unit> {
+            UiState.Loading
             //tham chiêú đến collection food và update
             val foodSnapshot = database.collection(FirebaseCollections.FOOD)
                 .document(foodId)
@@ -61,49 +60,39 @@ class  FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
                     .document(foodId)
                     .update(updateFields)
 
-                emit(UiState.Success(Unit))
+                return UiState.Success(Unit)
             } else {
-                emit(UiState.Error("khong tim thay food voi id tuong ung"))
+                return UiState.Error("khong tim thay food voi id tuong ung")
             }
-        }.catch { exception ->
-            emit(UiState.Error("An error occurred: ${exception.message}"))
-
-        }
     }
 
-    override fun addFood(food: Food): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun addFood(food: Food, result: (UiState<String>) -> Unit){
         val foodRef = database.collection(FirebaseCollections.FOOD).document()
         foodRef.set(food)
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit)).isSuccess
-                channel.close()
+                result.invoke(UiState.Success("add food successful"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error(exception.message.toString()))
             }
-        awaitClose()
     }
 
-    override fun addListFood(foods: List<Food>): Flow<UiState<Unit>> = flow {
+    override suspend fun addListFood(foods: List<Food>, result: (UiState<String>) -> Unit){
 
     }
 
-    override fun removeFood(foodId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun removeFood(foodId: String, result: (UiState<String>) -> Unit){
         val foodRef = database.collection(FirebaseCollections.FOOD).document(foodId)
         foodRef.delete()
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit))
-                channel.close()
+                result.invoke(UiState.Success("remove food successful"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("remove failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error(exception.message.toString()))
             }
-        awaitClose()
     }
 
-    override fun getFoodList(): Flow<Result<List<Food>>> = callbackFlow {
+    override suspend fun getFoodList(result: (UiState<List<Food>>)->Unit){
         val foodRef = database.collection(FirebaseCollections.FOOD)
             .get()
             .addOnSuccessListener {
@@ -111,29 +100,21 @@ class  FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
                 for (food in it) {
                     foodList.add(food.toObject(Food::class.java))
                 }
-                channel.trySend(Result.success(foodList))
-                channel.close()
+                result.invoke(UiState.Success(foodList))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("get food list failed ${exception.message}"))).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("get food list failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun getFoodById(foodId: String): Flow<Result<Food?>> = callbackFlow {
+    override suspend fun getFoodById(foodId:String, result: (UiState<Food?>)->Unit){
         val foodRef = database.collection(FirebaseCollections.FOOD).document(foodId)
             .get()
             .addOnSuccessListener {
-                channel.trySend(Result.success(it.toObject(Food::class.java)))
-                channel.close()
+                result.invoke(UiState.Success(it.toObject(Food::class.java)))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("get food failed ${exception.message}"))).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("get food failed ${exception.message}"))
             }
-        awaitClose()
     }
-
-
 }

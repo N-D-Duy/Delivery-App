@@ -5,12 +5,12 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface OrderRepository {
-    fun updateStatusOrder(newStatus: String, userId: String): Flow<UiState<Unit>>
+    suspend fun updateStatusOrder(newStatus: String, userId: String, result: (UiState<String>)->Unit)
 
-    fun getOrder(userId:String): Flow<Result<Order>>
+    suspend fun getOrder(userId:String, result: (UiState<Order>)->Unit)
 
-    fun addOrder(order: Order, userId: String): Flow<UiState<Unit>>
+    suspend fun addOrder(order: Order, userId: String, result: (UiState<String>) -> Unit)
 
-    fun removeOrder(orderId: String): Flow<UiState<Unit>>
+    suspend fun removeOrder(orderId: String, result: (UiState<String>) -> Unit)
 
 }

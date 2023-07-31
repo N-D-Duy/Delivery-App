@@ -14,25 +14,20 @@ import java.util.Date
 
 class HistoryRepositoryImp(val database: FirebaseFirestore) : HistoryRepository {
     //to do
-    override fun getSearchHistory(userId: String): Flow<Result<History>> = callbackFlow {
-        val historyRef = database.collection(FirebaseCollections.HISTORY)
+    override suspend fun getSearchHistory(userId: String, result: (UiState<History>)->Unit) {
+        database.collection(FirebaseCollections.HISTORY)
             .document(userId)
             .get()
             .addOnSuccessListener {
                     val history = it.toObject(History::class.java)!!
-                    channel.trySend(Result.success(history))
-                    channel.close()
+                   result.invoke(UiState.Success(history))
             }
             .addOnFailureListener {exception ->
-                channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("update failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun addSearchQuery(userId: String, query: Map<String, Date>): Flow<UiState<Unit>> {
-        return flow {
-            emit(UiState.Loading)
+    override suspend fun addSearchQuery(userId: String, query: Map<String, Date>, result: (UiState<String>)->Unit) {
             //tham chieu den history cua nguoi dung
             val historyRef = database.collection(FirebaseCollections.HISTORY)
                 .document(userId)
@@ -40,36 +35,35 @@ class HistoryRepositoryImp(val database: FirebaseFirestore) : HistoryRepository 
                 .await()
             if(historyRef.exists()){
                 database.collection(FirebaseCollections.HISTORY).document(userId).update("queries", query)
-                emit(UiState.Success(Unit))
+                    .addOnSuccessListener {
+                        result.invoke(UiState.Success("add search query successful"))
+                    }.addOnFailureListener { exception->
+                        result.invoke(UiState.Error(exception.message.toString()))
+                    }
             }else{
-                emit(UiState.Error("add query failed"))
+                result.invoke(UiState.Error("history un found"))
             }
-        }.catch { e->
-            emit(UiState.Error("Error: ${e.message.toString()}"))
-        }
     }
 
-    override fun clearSearchHistory(userId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun clearSearchHistory(userId: String, result: (UiState<String>) -> Unit) {
         //tham chieu den history can xoa
         val historyRef = database.collection(FirebaseCollections.HISTORY)
             .document(userId)
             historyRef.delete()
                 .addOnSuccessListener {
-                    channel.trySend(UiState.Success(Unit))
-                    channel.close()
+                    result.invoke(UiState.Success("clear history successfully"))
                 }
                 .addOnFailureListener { e->
-                    channel.trySend((UiState.Error("delete history failed: ${e.message.toString()}")))
-                    channel.close()
+                    result.invoke(UiState.Error("delete history failed: ${e.message.toString()}"))
                 }
-        awaitClose()
     }
 
-    override fun updateHistory(
+    override suspend fun updateHistory(
         userId: String,
         newQuery: String,
-        timestamp: String
-    ): Flow<UiState<Unit>> = callbackFlow{
+        timestamp: String,
+        result: (UiState<String>) -> Unit
+    ){
         val historyRef = database.collection(FirebaseCollections.HISTORY)
             .document(userId)
             historyRef.get()
@@ -82,6 +76,12 @@ class HistoryRepositoryImp(val database: FirebaseFirestore) : HistoryRepository 
 
                     // Update the "queries" field in the Firestore document
                     historyRef.set(historyData as History)
+                        .addOnSuccessListener{
+                            result.invoke(UiState.Success("update history success"))
+                        }.addOnFailureListener { e->
+                            result.invoke(UiState.Error(e.message.toString()))
+                        }
+
                 } else {
                     // History for the user does not exist, create a new document
                     val newHistory = History(userId, mutableMapOf(newQuery to timestamp))

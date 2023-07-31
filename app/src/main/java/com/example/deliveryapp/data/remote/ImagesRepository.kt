@@ -5,10 +5,9 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface ImagesRepository{
-    fun getImagesByFoodId(foodId: String):Flow<Result<ImageFood>>
+    suspend fun getImagesByFoodId(foodId: String, result: (UiState<ImageFood>)->Unit)
 
-    fun addImage(foodId: String, newUrl:Map<String, String>): Flow<UiState<Unit>>
+    suspend fun addImage(foodId: String, newUrl:Map<String, String>, result: (UiState<String>)->Unit)
 
-    fun removeImage(foodId: String, urlImage:String): Flow<UiState<Unit>>
-
+    suspend fun removeImage(foodId: String, urlImage:String, result: (UiState<String>) -> Unit)
 }

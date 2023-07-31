@@ -5,17 +5,17 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface OfferRepository {
-    fun getRestaurantOffers(restaurantId: String): Flow<Result<Offer>>
+    suspend fun getRestaurantOffers(restaurantId: String, result: (UiState<Offer>)->Unit)
 
-    fun getFoodOffers(foodId: String): Flow<Result<Offer>>
+    suspend fun getFoodOffers(foodId: String, result: (UiState<Offer>) -> Unit)
 
-    fun getFreeShippingOffers(): Flow<Result<List<Offer>>>
+    suspend fun getFreeShippingOffers(): Flow<Result<List<Offer>>>
 
-    fun addOffer(offer: Offer): Flow<UiState<Unit>>
+    suspend fun addOffer(offer: Offer, result: (UiState<String>) -> Unit)
 
-    fun updateOffer(offerId: String,offer: Offer): Flow<UiState<Unit>>
+    suspend fun updateOffer(offerId: String,offer: Offer, result: (UiState<String>) -> Unit)
 
-    fun deleteOffer(offerId: String): Flow<UiState<Unit>>
+    suspend fun deleteOffer(offerId: String, result: (UiState<String>) -> Unit)
 
 
 }

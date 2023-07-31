@@ -5,16 +5,16 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface FoodRepository {
-    fun update(food:Food, foodId:String):Flow<UiState<Unit>>
+    suspend fun update(food:Food, foodId:String):UiState<Unit>
 
-    fun addFood(food:Food):Flow<UiState<Unit>>
+    suspend fun addFood(food:Food, result: (UiState<String>) -> Unit)
 
-    fun addListFood(foods: List<Food>): Flow<UiState<Unit>>
+    suspend fun addListFood(foods: List<Food>, result: (UiState<String>) -> Unit)
 
-    fun removeFood(foodId:String):Flow<UiState<Unit>>
+    suspend fun removeFood(foodId:String, result: (UiState<String>) -> Unit)
 
-    fun getFoodList(): Flow<Result<List<Food>>>
+    suspend fun getFoodList(result: (UiState<List<Food>>)->Unit)
 
-    fun getFoodById(foodId:String): Flow<Result<Food?>>
+    suspend fun getFoodById(foodId:String, result: (UiState<Food?>)->Unit)
 
 }

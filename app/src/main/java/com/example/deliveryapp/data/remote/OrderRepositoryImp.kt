@@ -12,76 +12,57 @@ import kotlinx.coroutines.flow.flow
 
 class OrderRepositoryImp(val database:FirebaseFirestore): OrderRepository {
     //fetch data order
-    override fun updateStatusOrder(newStatus: String, userId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun updateStatusOrder(newStatus: String, userId: String, result: (UiState<String>)->Unit){
         val orderRef = database.collection(FirebaseCollections.ORDER)
             .document(userId)
 
-        val order = getOrder(userId) as Order
-
-        order.status = newStatus
-
         val dataMap = mapOf(
-            "order_id" to order.orderId,
-            "status" to order.status,
-            "paid" to order.paid,
-            "date_payment" to order.date
+            "status" to newStatus
         )
 
         orderRef.update(dataMap)
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit)).isSuccess
-                channel.close()
+                //
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update status order failed ${exception.message}")).isSuccess
-                channel.close()
+                //
             }
-        awaitClose()
     }
 
-    override fun getOrder(userId: String): Flow<Result<Order>> = callbackFlow {
+    override suspend fun getOrder(userId: String, result: (UiState<Order>) -> Unit) {
         database.collection(FirebaseCollections.USER).document(userId)
             .get()
             .addOnSuccessListener {
                 val userData = it.toObject(Order::class.java)!!
-                channel.trySend(Result.success(userData))
-                channel.close()
+                result.invoke(UiState.Success(userData))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("get order failed ${exception.message}"))).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("get order failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun addOrder(order: Order, userId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun addOrder(order: Order, userId: String, result: (UiState<String>) -> Unit) {
         val orderRef = database.collection(FirebaseCollections.ORDER).document()
         orderRef.set(order)
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit)).isSuccess
-                channel.close()
+                result.invoke(UiState.Success("add order success"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("add order failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("add order failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun removeOrder(orderId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun removeOrder(orderId: String, result: (UiState<String>) -> Unit) {
         val orderRef = database.collection(FirebaseCollections.ORDER)
             .document(orderId)
 
         orderRef.delete()
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit)).isSuccess
-                channel.close()
+                result.invoke(UiState.Success("remove order success"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("remove order failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("remove order failed ${exception.message}"))
             }
-        awaitClose()
     }
 
 }

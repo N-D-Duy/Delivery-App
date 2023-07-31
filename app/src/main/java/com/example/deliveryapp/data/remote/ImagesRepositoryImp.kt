@@ -11,49 +11,40 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class ImagesRepositoryImp(val database: FirebaseFirestore) : ImagesRepository {
     //fetch data
-    override fun getImagesByFoodId(foodId: String): Flow<Result<ImageFood>> = callbackFlow {
+    override suspend fun getImagesByFoodId(foodId: String, result: (UiState<ImageFood>)->Unit){
         //tham chieu den document image can
-        val imageRef = database.collection(FirebaseCollections.IMAGE).document(foodId)
+        database.collection(FirebaseCollections.IMAGE).document(foodId)
             .get()
             .addOnSuccessListener {
-                channel.trySend(Result.success(it.toObject(ImageFood::class.java)!!))
-                channel.close()
+                result.invoke(UiState.Success(it.toObject(ImageFood::class.java)!!))
             }
             .addOnFailureListener {e->
-                channel.trySend(Result.failure(Throwable("get image failed: ${e.message}")))
-                channel.close()
+                result.invoke(UiState.Error("get image failed: ${e.message}"))
             }
-        awaitClose()
     }
 
-    override fun addImage(foodId: String, newUrl: Map<String, String>): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun addImage(foodId: String, newUrl: Map<String, String>, result: (UiState<String>)->Unit){
         //tham chieu den collection images
         val imageRef = database.collection(FirebaseCollections.IMAGE)
             .document(foodId)
         imageRef.update("url", newUrl)
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit))
-                channel.close()
+                result.invoke(UiState.Success("add image success"))
             }.addOnFailureListener {e->
-                channel.trySend(UiState.Error("add image failed: ${e.message}"))
-                channel.close()
+                result.invoke(UiState.Error("add image failed: ${e.message}"))
             }
-        awaitClose()
     }
 
-    override fun removeImage(foodId: String, urlImage:String): Flow<UiState<Unit>> = callbackFlow{
+    override suspend fun removeImage(foodId: String, urlImage:String, result: (UiState<String>) -> Unit){
         val updateMap = mapOf<String, Any>(
             "url.${urlImage}" to FieldValue.delete()
         )
         database.collection(FirebaseCollections.IMAGE).document(foodId)
             .update(updateMap)
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit))
-                channel.close()
+                result.invoke(UiState.Success("remove image success"))
             }.addOnFailureListener {e->
-                channel.trySend(UiState.Error("remove image failed: ${e.message}"))
-                channel.close()
+                result.invoke(UiState.Error("remove image failed: ${e.message}"))
             }
-        awaitClose()
     }
 }

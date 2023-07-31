@@ -1,7 +1,7 @@
-/*
 package com.example.deliveryapp.data
 
 import com.example.deliveryapp.data.local.database.DbHelper
+import com.example.deliveryapp.data.remote.FoodRepositoryImp
 import com.example.deliveryapp.data.remote.UserRepositoryImp
 import com.example.deliveryapp.model.Cart
 import com.example.deliveryapp.model.Food
@@ -10,9 +10,12 @@ import com.example.deliveryapp.model.Offer
 import com.example.deliveryapp.model.Order
 import com.example.deliveryapp.model.Restaurant
 import com.example.deliveryapp.model.User
+import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 
@@ -20,13 +23,7 @@ class AppData(
     private val localDatabase: DbHelper
 ) : DataManager {
     override suspend fun getUsers(): Flow<List<User>?> {
-        val localUsers = localDatabase.getAllUsers().toList()
-        if (localUsers.isNotEmpty()) {
-            return localUsers.asFlow()
-        }
-       return
-
-
+        TODO()
     }
 
     override suspend fun getUserById(uid: String): Flow<User?> {
@@ -41,8 +38,8 @@ class AppData(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFoodById(foodId: String): Flow<Food?> {
-        TODO("Not yet implemented")
+    override suspend fun getFoodById(foodId: String): Flow<UiState<Food?>> = callbackFlow{
+
     }
 
     override suspend fun getFoodByName(name: String): Flow<Food?> {
@@ -174,4 +171,4 @@ class AppData(
     }
 
 
-}*/
+}

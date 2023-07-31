@@ -16,7 +16,7 @@ import kotlinx.coroutines.tasks.await
 
 class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
     //to do
-    override fun getRestaurantOffers(restaurantId: String): Flow<Result<Offer>> = callbackFlow {
+    override suspend fun getRestaurantOffers(restaurantId: String, result: (UiState<Offer>)->Unit){
         var docRes = Restaurant()
         database.collection(FirebaseCollections.RESTAURANT).document(restaurantId)
             .get()
@@ -24,26 +24,22 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
                 docRes = it.toObject(Restaurant::class.java)!!
             }
             .addOnFailureListener {exception ->
-                channel.trySend(Result.failure(Throwable("get res offer failed ${exception.message}"))).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("get res offer failed ${exception.message}"))
             }
         if(docRes.offerId != null){
             database.collection(FirebaseCollections.OFFER).document(docRes.offerId.toString())
                 .get()
                 .addOnSuccessListener {
                     val offerValue = it.toObject(Offer::class.java)!!
-                    channel.trySend(Result.success(offerValue))
-                    channel.close()
+                    result.invoke(UiState.Success(offerValue))
                 }
                 .addOnFailureListener {exception ->
-                    channel.trySend(Result.failure(Throwable("get res offer failed ${exception.message}"))).isSuccess
-                    channel.close()
+                    result.invoke(UiState.Error("get res offer failed ${exception.message}"))
                 }
         }
-        awaitClose()
     }
 
-    override fun getFoodOffers(foodId: String): Flow<Result<Offer>> = callbackFlow {
+    override suspend fun getFoodOffers(foodId: String, result: (UiState<Offer>) -> Unit) {
 
         val docFood = database.collection(FirebaseCollections.FOOD).document(foodId)
             .get()
@@ -55,38 +51,32 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
                 .get()
                 .addOnSuccessListener {
                     val offerValue = it.toObject(Offer::class.java)!!
-                    channel.trySend(Result.success(offerValue))
-                    channel.close()
+                    result.invoke(UiState.Success(offerValue))
                 }
                 .addOnFailureListener { exception ->
-                    channel.trySend(Result.failure(Throwable("get food offer failed ${exception.message}"))).isSuccess
-                    channel.close()
+                    result.invoke(UiState.Error("get food offer failed ${exception.message}"))
                 }
         }
-        awaitClose()
     }
 
-    override fun getFreeShippingOffers(): Flow<Result<List<Offer>>> {
+    override suspend fun getFreeShippingOffers(): Flow<Result<List<Offer>>> {
         return flow {
 
         }
     }
 
-    override fun addOffer(offer: Offer): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun addOffer(offer: Offer, result: (UiState<String>) -> Unit) {
         val offerRef = database.collection(FirebaseCollections.OFFER).document()
         offerRef.set(offer)
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit)).isSuccess
-                channel.close()
+                result.invoke(UiState.Success("add offer success"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("add offer failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("add offer failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun updateOffer(offerId: String, offer: Offer): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun updateOffer(offerId: String, offer: Offer, result: (UiState<String>) -> Unit) {
         val offerRef = database.collection(FirebaseCollections.OFFER)
             .document(offerId)
 
@@ -97,30 +87,24 @@ class OfferRepositoryImp(val database:FirebaseFirestore): OfferRepository {
         )
         offerRef.update(dataMap)
             .addOnSuccessListener {
-            channel.trySend(UiState.Success(Unit)).isSuccess
-            channel.close()
+            result.invoke(UiState.Success("update offer success"))
             }
             .addOnFailureListener { exception ->
-            channel.trySend(UiState.Error("update offer failed ${exception.message}")).isSuccess
-            channel.close()
+            result.invoke(UiState.Error("update offer failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun deleteOffer(offerId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun deleteOffer(offerId: String, result: (UiState<String>) -> Unit) {
         val offerRef = database.collection(FirebaseCollections.OFFER)
             .document(offerId)
 
         offerRef.delete()
             .addOnSuccessListener {
-            channel.trySend(UiState.Success(Unit)).isSuccess
-            channel.close()
+                result.invoke(UiState.Success("delete offer success"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("delete offer failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("delete offer failed ${exception.message}"))
             }
-        awaitClose()
     }
 
 }

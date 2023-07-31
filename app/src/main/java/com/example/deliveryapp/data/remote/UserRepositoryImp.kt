@@ -14,42 +14,27 @@ import kotlinx.coroutines.tasks.await
 
 class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
     //implement here and fetch data,...
-    override fun getUserById(userId: String): Flow<Result<User>> = callbackFlow {
+    override suspend fun getUserById(userId: String, result: (UiState<User>)->Unit){
         database.collection(FirebaseCollections.USER).document(userId)
             .get()
             .addOnSuccessListener {
                 val userData = it.toObject(User::class.java)!!
-                channel.trySend(Result.success(userData))
-                channel.close()
+                result.invoke(UiState.Success(userData))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("update failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun getAllUser(): Flow<List<User>> = flow{
-
+    override suspend fun getAllUser(result: (UiState<List<User>>) -> Unit){
 
     }
 
-    override fun loginUser(email: String, password: String): Flow<Result<User>>  = callbackFlow{
-        val userRef = database.collection(FirebaseCollections.USER).whereEqualTo("email", email)
-        userRef.get()
-            .addOnSuccessListener {
-                if(!it.isEmpty){
-                    val documentSnapshot = it.documents[0].toObject(User::class.java)!!
-                }
-            }
-            .addOnFailureListener { exception ->
-                channel.trySend(Result.failure(Throwable("update failed ${exception.message}"))).isSuccess
-                channel.close()
-            }
-        awaitClose()
+    override suspend fun loginUser(email: String, password: String): Flow<Result<User>> = flow{
+
     }
 
-    override fun registerUser(email: String, password: String): Flow<Result<User>> = callbackFlow {
+    override suspend fun registerUser(email: String, password: String): Flow<Result<User>> = callbackFlow {
         /*val registerRef = database.collection(FirebaseCollections.USER).document()
         val newUser = User(email,password)
         registerRef.set(newUser)
@@ -64,28 +49,25 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
         awaitClose()*/
     }
 
-    override fun logoutUser(userId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun logoutUser(userId: String): Flow<UiState<Unit>> = callbackFlow {
         val logoutRef = database.collection(FirebaseCollections.USER).document(userId)
 
     }
 
-    override fun deleteUser(userId: String): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun deleteUser(userId: String, result: (UiState<String>) -> Unit){
         val userRef = database.collection(FirebaseCollections.USER)
             .document(userId)
 
         userRef.delete()
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit)).isSuccess
-                channel.close()
+                result.invoke(UiState.Success("delete user success"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("delete user failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("delete user failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun updateUser(userId: String, user: User): Flow<UiState<Unit>> = callbackFlow {
+    override suspend fun updateUser(userId: String, user: User, result: (UiState<String>) -> Unit){
         val userRef = database.collection(FirebaseCollections.USER)
             .document(userId)
 
@@ -99,25 +81,22 @@ class UserRepositoryImp(val database: FirebaseFirestore): UserRepository {
 
         userRef.update(dataMap)
             .addOnSuccessListener {
-                channel.trySend(UiState.Success(Unit)).isSuccess
-                channel.close()
+                result.invoke(UiState.Success("update user success"))
             }
             .addOnFailureListener { exception ->
-                channel.trySend(UiState.Error("update user failed ${exception.message}")).isSuccess
-                channel.close()
+                result.invoke(UiState.Error("update user failed ${exception.message}"))
             }
-        awaitClose()
     }
 
-    override fun insertUser(user: User): Flow<UiState<Unit>> = flow{
-
-    }
-
-    override fun insertListUser(users: List<User>): Flow<UiState<Unit>> = flow{
+    override suspend fun insertUser(user: User, result: (UiState<String>) -> Unit){
 
     }
 
-    override fun getUserByName(name: String): Flow<Result<User>> = flow{
+    override suspend fun insertListUser(users: List<User>, result: (UiState<String>) -> Unit){
+
+    }
+
+    override suspend fun getUserByName(name: String, result: (UiState<User>) -> Unit){
 
     }
 }

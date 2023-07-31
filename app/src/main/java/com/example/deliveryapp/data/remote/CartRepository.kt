@@ -5,13 +5,13 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface CartRepository {
-    fun getCart(userId: String): Flow<Result<Cart?>>
+    suspend fun getCart(userId: String): UiState<Cart?>
 
-    fun addToCart(userId: String, foodId: String, quantity: Int): Flow<UiState<Unit>>
+    suspend fun addToCart(userId: String, foodId: String, quantity: Int): UiState<Unit>
 
-    fun removeFromCart(userId: String, foodId: String): Flow<UiState<Unit>>
+    suspend fun removeFromCart(userId: String, foodId: String): UiState<Unit>
 
-    fun updateCartItemQuantity(userId: String, foodId: String, quantity: Int): Flow<UiState<Unit>>
+    suspend fun updateCartItemQuantity(userId: String, foodId: String, quantity: Int): UiState<Unit>
 
-    fun clearCart(userId: String): Flow<UiState<Unit>>
+    suspend fun clearCart(userId: String): UiState<Unit>
 }

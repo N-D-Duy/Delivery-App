@@ -7,11 +7,11 @@ import java.util.Date
 
 
 interface HistoryRepository{
-    fun getSearchHistory(userId: String): Flow<Result<History>>
+    suspend fun getSearchHistory(userId: String, result: (UiState<History>)->Unit)
 
-    fun addSearchQuery(userId: String, query: Map<String, Date>, ): Flow<UiState<Unit>>
+    suspend fun addSearchQuery(userId: String, query: Map<String, Date>, result: (UiState<String>)->Unit)
 
-    fun clearSearchHistory(userId: String): Flow<UiState<Unit>>
+    suspend fun clearSearchHistory(userId: String, result: (UiState<String>) -> Unit)
 
-    fun updateHistory(userId: String, newQuery: String, timestamp: String): Flow<UiState<Unit>>
+    suspend fun updateHistory(userId: String, newQuery: String, timestamp: String, result: (UiState<String>) -> Unit)
 }

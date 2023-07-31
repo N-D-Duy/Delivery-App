@@ -5,28 +5,28 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    fun getUserById(userId: String): Flow<Result<User>>
+    suspend fun getUserById(userId: String, result: (UiState<User>)->Unit)
 
-    fun getAllUser(): Flow<List<User>>
-
-
-    fun loginUser(email: String, password: String): Flow<Result<User>>
+    suspend fun getAllUser(result: (UiState<List<User>>) -> Unit)
 
 
-    fun registerUser(email: String, password: String): Flow<Result<User>>
+    suspend fun loginUser(email: String, password: String): Flow<Result<User>>
 
 
-    fun logoutUser(userId: String): Flow<UiState<Unit>>
-
-    fun deleteUser(userId: String): Flow<UiState<Unit>>
+    suspend fun registerUser(email: String, password: String): Flow<Result<User>>
 
 
-    fun updateUser(userId: String, user: User): Flow<UiState<Unit>>
+    suspend fun logoutUser(userId: String): Flow<UiState<Unit>>
 
-    fun insertUser(user: User):Flow<UiState<Unit>>
+    suspend fun deleteUser(userId: String, result: (UiState<String>) -> Unit)
 
-    fun insertListUser(users: List<User>): Flow<UiState<Unit>>
 
-    fun getUserByName(name: String): Flow<Result<User>>
+    suspend fun updateUser(userId: String, user: User, result: (UiState<String>) -> Unit)
+
+    suspend fun insertUser(user: User, result: (UiState<String>) -> Unit)
+
+    suspend fun insertListUser(users: List<User>, result: (UiState<String>) -> Unit)
+
+    suspend fun getUserByName(name: String, result: (UiState<User>) -> Unit)
 
 }
