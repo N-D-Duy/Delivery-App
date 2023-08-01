@@ -22,8 +22,41 @@ import kotlinx.coroutines.flow.toList
 class AppData(
     private val localDatabase: DbHelper
 ) : DataManager {
-    override suspend fun getUsers(): Flow<List<User>?> {
-        TODO()
+    override suspend fun getUsers(): Flow<UiState<List<User?>?>> = callbackFlow{
+        channel.trySend(UiState.Loading)
+        var localUsers: List<User?>? = arrayListOf()
+        localDatabase.getAllUsers{result->
+            when(result){
+                is UiState.Success ->{
+                    localUsers = result.data
+                }
+                is UiState.Error ->{
+                    //tra ve loi
+                }
+
+                else -> {
+
+                }
+            }
+        }
+        if(localUsers != null){
+            channel.trySend(UiState.Success(localUsers))
+            channel.close()
+        }else{
+            UserRepositoryImp().getAllUser {result->
+                when(result){
+                    is UiState.Success->{
+                        channel.trySend(UiState.Success(result.data))
+                        channel.close()
+                    }
+                    is UiState.Error ->{
+                        //tra ve loi
+                    }
+                    else->{
+                    }
+                }
+            }
+        }
     }
 
     override suspend fun getUserById(uid: String): Flow<User?> {

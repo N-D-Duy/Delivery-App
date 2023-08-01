@@ -29,7 +29,7 @@ interface DataManager{
     // get data
 
         //User
-    suspend fun getUsers(): Flow<List<User>?>
+    suspend fun getUsers(): Flow<UiState<List<User?>?>>
 
     suspend fun getUserById(uid: String): Flow<User?>
     suspend fun getUserByName(name: String): Flow<User?>

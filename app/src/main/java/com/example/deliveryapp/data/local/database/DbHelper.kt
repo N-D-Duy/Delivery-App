@@ -9,38 +9,38 @@ import kotlinx.coroutines.flow.Flow
 
 interface DbHelper {
     //user
-    fun getAllUsers(): Flow<List<User>>
+    suspend fun getAllUsers(result: (UiState<List<User?>?>)->Unit)
 
-    fun insertUser(user: User): Flow<UiState<Unit>>
+    suspend fun insertUser(user: User, result: (UiState<String>) -> Unit)
 
-    fun insertAllUser(users: List<User>): Flow<UiState<Unit>>
+    suspend fun insertAllUser(users: List<User>, result: (UiState<String>) -> Unit)
 
-    fun getUserById(id: String): Flow<User?>
+    suspend fun getUserById(id: String, result: (UiState<User?>) -> Unit)
 
-    fun deleteUserById(id: String): Flow<UiState<Unit>>
+    suspend fun deleteUserById(id: String, result: (UiState<String>) -> Unit)
 
-    fun updateUser(user: User): Flow<UiState<Unit>>
+    suspend fun updateUser(user: User, result: (UiState<String>) -> Unit)
 
 
     //food
-    fun getAllFoods(): Flow<List<Food>>
+    suspend fun getAllFoods(result: (UiState<List<Food?>?>) -> Unit)
 
-    fun insertFood(food: Food): Flow<UiState<Unit>>
+    suspend fun insertFood(food: Food, result: (UiState<String>) -> Unit)
 
-    fun insertAllFood(foods: List<Food>): Flow<UiState<Unit>>
+    suspend fun insertAllFood(foods: List<Food>, result: (UiState<String>) -> Unit)
 
-    fun getFoodById(id: String): Flow<Food?>
+    suspend fun getFoodById(id: String, result: (UiState<Food?>) -> Unit)
 
-    fun deleteFoodById(id: String): Flow<UiState<Unit>>
+    suspend fun deleteFoodById(id: String, result: (UiState<String>) -> Unit)
 
-    fun updateFood(food: Food): Flow<UiState<Unit>>
+    suspend fun updateFood(food: Food, result: (UiState<String>) -> Unit)
 
 
     //history
-    fun getHistory(uid: String): Flow<History>
+    suspend fun getHistory(uid: String, result: (UiState<History?>) -> Unit)
 
-    fun updateHistory(history: History): Flow<UiState<Unit>>
+    suspend fun updateHistory(history: History, result: (UiState<String>) -> Unit)
 
-    fun getAllHistory(): Flow<List<History>>
+    suspend fun getAllHistory(result: (UiState<List<History?>?>) -> Unit)
 
 }

@@ -13,6 +13,7 @@ import kotlinx.coroutines.tasks.await
 class CartRepositoryImp(val database: FirebaseFirestore): CartRepository {
     //
     override suspend fun getCart(userId: String): UiState<Cart?> {
+        UiState.Loading
         //tìm cart
         val cartSnapshot = database.collection(FirebaseCollections.CART)
             .whereEqualTo("user_id", userId)
@@ -29,6 +30,7 @@ class CartRepositoryImp(val database: FirebaseFirestore): CartRepository {
     }
 
     override suspend fun addToCart(userId: String, foodId: String, quantity: Int): UiState<Unit> {
+        UiState.Loading
             //tìm cart
         val cartSnapshot = database.collection(FirebaseCollections.CART)
             .whereEqualTo("user_id", userId)
