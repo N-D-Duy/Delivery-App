@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.deliveryapp.R
+import com.example.deliveryapp.data.local.database.AppDatabase
+import com.example.deliveryapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+    private lateinit var _binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +21,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+
+        return _binding.root
     }
 
 }

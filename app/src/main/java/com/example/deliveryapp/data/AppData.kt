@@ -1,5 +1,7 @@
 package com.example.deliveryapp.data
 
+import com.example.deliveryapp.data.local.database.AppDatabase
+import com.example.deliveryapp.data.local.database.AppDbHelper
 import com.example.deliveryapp.data.local.database.DbHelper
 import com.example.deliveryapp.data.remote.FoodRepositoryImp
 import com.example.deliveryapp.data.remote.UserRepositoryImp
@@ -11,6 +13,7 @@ import com.example.deliveryapp.model.Order
 import com.example.deliveryapp.model.Restaurant
 import com.example.deliveryapp.model.User
 import com.example.deliveryapp.utils.UiState
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.callbackFlow
@@ -20,34 +23,21 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 
 class AppData(
-    private val localDatabase: DbHelper
-) : DataManager {
-    override suspend fun getUsers(): Flow<UiState<List<User?>?>> = callbackFlow{
-        channel.trySend(UiState.Loading)
+    private val localDatabase: AppDatabase,
+    private val remoteDatabase: FirebaseFirestore
+) {
+//    override suspend fun getUsers(): UiState<List<User?>?> {
+        /*UiState.Loading
         var localUsers: List<User?>? = arrayListOf()
-        localDatabase.getAllUsers{result->
-            when(result){
-                is UiState.Success ->{
-                    localUsers = result.data
-                }
-                is UiState.Error ->{
-                    //tra ve loi
-                }
+        var remoteUsers: List<User?>? = arrayListOf()
 
-                else -> {
-
-                }
-            }
-        }
         if(localUsers != null){
-            channel.trySend(UiState.Success(localUsers))
-            channel.close()
+            result.invoke(UiState.Success(localUsers))
         }else{
-            UserRepositoryImp().getAllUser {result->
-                when(result){
+            UserRepositoryImp(remoteDatabase).getAllUser {result2->
+                when(result2){
                     is UiState.Success->{
-                        channel.trySend(UiState.Success(result.data))
-                        channel.close()
+                        remoteUsers = result2.data
                     }
                     is UiState.Error ->{
                         //tra ve loi
@@ -56,7 +46,8 @@ class AppData(
                     }
                 }
             }
-        }
+            result.invoke(UiState.Success(remoteUsers))
+        }*//*
     }
 
     override suspend fun getUserById(uid: String): Flow<User?> {
@@ -202,6 +193,6 @@ class AppData(
     override suspend fun register(): User {
         TODO("Not yet implemented")
     }
-
+*/
 
 }
