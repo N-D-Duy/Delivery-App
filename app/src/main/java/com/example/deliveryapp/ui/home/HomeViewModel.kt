@@ -5,51 +5,36 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deliveryapp.data.AppData
-import com.example.deliveryapp.data.local.database.AppDatabase
-import com.example.deliveryapp.data.local.database.AppDbHelper
-import com.example.deliveryapp.data.local.database.DbHelper
-import com.example.deliveryapp.model.User
+import com.example.deliveryapp.model.Food
+import com.example.deliveryapp.model.Nutrition
 import com.example.deliveryapp.utils.UiState
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-
+    val appData: AppData
 ) : ViewModel() {
+    private val _test = MutableLiveData<UiState<String>>()
+    val test: LiveData<UiState<String>> get() = _test
 
-
-    private val _users = MutableLiveData<UiState<List<User?>?>>()
-    val users: LiveData<UiState<List<User?>?>> get() = _users
-
-    fun getUsers(){
-        /*viewModelScope.launch {
-            try {
-                // Gọi phương thức của DataManager để lấy danh sách người dùng
-                val users = dataManager.getUsers { result ->
-                    when (result) {
-                        is UiState.Success -> {
-                            // Cập nhật trạng thái UI với dữ liệu nhận được
-                            _users.value = result
-                        }
-
-                        is UiState.Error -> {
-                            _users.value = UiState.Error("Unknown error")
-                        }
-
-                        is UiState.Loading -> {
-
-                        }
-                    }
-
-                }
-
-
-
-            } catch (e: Exception) {
-                // Xử lý lỗi nếu có
-                _users.value = UiState.Error(e.message ?: "Unknown error")
-            }
-        }*/
+    fun test() {
+        _test.value = UiState.Loading
+        viewModelScope.launch {
+            _test.value = appData.update(
+                Food(
+                    123456,
+                    "mon an 1",
+                    "1000",
+                    false,
+                    "ngon",
+                    "monan1 monan1",
+                    Nutrition("100", "15", "15", "15", "15"),
+                    "5",
+                    "01234",
+                    "0123",
+                    "012"
+                ), "123456"
+            )
+        }
     }
 }

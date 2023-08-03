@@ -2,6 +2,8 @@ package com.example.deliveryapp.data.di
 
 import android.app.Application
 import android.content.Context
+import com.example.deliveryapp.data.AppData
+import com.example.deliveryapp.data.DataManager
 import com.example.deliveryapp.data.local.database.AppDatabase
 import com.example.deliveryapp.data.local.database.AppDbHelper
 import com.example.deliveryapp.data.local.database.DbHelper
@@ -126,5 +128,6 @@ object AppModule {
     fun provideLocalDatabase(@ApplicationContext context: Context): AppDatabase{
         return AppDatabase.getDatabase(context)
     }
+
 
 }

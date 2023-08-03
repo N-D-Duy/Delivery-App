@@ -103,15 +103,15 @@ class AppData @Inject constructor(
     }
 
     override suspend fun getCart(userId: String): UiState<Cart?> {
-        TODO("Not yet implemented")
+        return cartRepository.getCart(userId)
     }
 
     override suspend fun addToCart(userId: String, foodId: String, quantity: Int): UiState<Unit> {
-        TODO("Not yet implemented")
+        return cartRepository.addToCart(userId, foodId, quantity)
     }
 
     override suspend fun removeFromCart(userId: String, foodId: String): UiState<Unit> {
-        TODO("Not yet implemented")
+        return cartRepository.removeFromCart(userId, foodId)
     }
 
     override suspend fun updateCartItemQuantity(
@@ -119,23 +119,35 @@ class AppData @Inject constructor(
         foodId: String,
         quantity: Int
     ): UiState<Unit> {
-        TODO("Not yet implemented")
+        return cartRepository.updateCartItemQuantity(userId, foodId, quantity)
     }
 
     override suspend fun clearCart(userId: String): UiState<Unit> {
-        TODO("Not yet implemented")
+        return cartRepository.clearCart(userId)
     }
 
-    override suspend fun update(food: Food, foodId: String): UiState<Unit> {
-        TODO("Not yet implemented")
+    override suspend fun update(food: Food, foodId: String): UiState<String> {
+        dbHelper.updateFoodLocal(food)
+        return foodRepository.update(food, foodId)
     }
 
     override suspend fun addFood(food: Food, result: (UiState<String>) -> Unit) {
-        TODO("Not yet implemented")
+        var uiState: UiState<String> = UiState.Loading
+        foodRepository.addFood(food) {
+            uiState = it
+
+        }
+        dbHelper.insertFoodLocal(food)
+        result.invoke(uiState)
     }
 
     override suspend fun addListFood(foods: List<Food>, result: (UiState<String>) -> Unit) {
-        TODO("Not yet implemented")
+        var uiState: UiState<String> = UiState.Loading
+        foodRepository.addListFood(foods){
+            uiState = it
+        }
+        dbHelper.insertAllFoodLocal(foods)
+        result.invoke(uiState)
     }
 
     override suspend fun removeFood(foodId: String, result: (UiState<String>) -> Unit) {

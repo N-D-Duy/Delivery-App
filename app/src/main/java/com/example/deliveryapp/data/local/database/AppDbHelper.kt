@@ -93,8 +93,6 @@ class AppDbHelper @Inject constructor(val database: AppDatabase): DbHelper {
     }
 
 
-
-
     override suspend fun getHistoryLocal(uid: String): History? {
         return mAppDatabase.historyDao().getHistoryByUserId(uid)
     }

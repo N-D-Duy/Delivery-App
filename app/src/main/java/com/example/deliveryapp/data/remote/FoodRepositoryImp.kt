@@ -13,7 +13,7 @@ import kotlinx.coroutines.tasks.await
 
 class  FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
     //to do
-    override suspend fun update(food: Food, foodId: String): UiState<Unit> {
+    override suspend fun update(food: Food, foodId: String): UiState<String> {
             UiState.Loading
             //tham chiêú đến collection food và update
             val foodSnapshot = database.collection(FirebaseCollections.FOOD)
@@ -60,7 +60,7 @@ class  FoodRepositoryImp(val database: FirebaseFirestore) : FoodRepository {
                     .document(foodId)
                     .update(updateFields)
 
-                return UiState.Success(Unit)
+                return UiState.Success("update success")
             } else {
                 return UiState.Error("khong tim thay food voi id tuong ung")
             }

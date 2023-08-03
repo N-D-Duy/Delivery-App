@@ -5,7 +5,7 @@ import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
 interface FoodRepository {
-    suspend fun update(food:Food, foodId:String):UiState<Unit>
+    suspend fun update(food:Food, foodId:String):UiState<String>
 
     suspend fun addFood(food:Food, result: (UiState<String>) -> Unit)
 
