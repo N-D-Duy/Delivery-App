@@ -9,38 +9,38 @@ import kotlinx.coroutines.flow.Flow
 
 interface DbHelper {
     //user
-    suspend fun getAllUsers(result: (UiState<List<User?>?>)->Unit)
+    suspend fun getAllUsersLocal(): List<User?>?
 
-    suspend fun insertUser(user: User, result: (UiState<String>) -> Unit)
+    suspend fun insertUserLocal(user: User)
 
-    suspend fun insertAllUser(users: List<User>, result: (UiState<String>) -> Unit)
+    suspend fun insertAllUserLocal(users: List<User>)
 
-    suspend fun getUserById(id: String, result: (UiState<User?>) -> Unit)
+    suspend fun getUserByIdLocal(id: String): User?
 
-    suspend fun deleteUserById(id: String, result: (UiState<String>) -> Unit)
+    suspend fun deleteUserByIdLocal(id: String)
 
-    suspend fun updateUser(user: User, result: (UiState<String>) -> Unit)
+    suspend fun updateUserLocal(user: User)
 
 
     //food
-    suspend fun getAllFoods(result: (UiState<List<Food?>?>) -> Unit)
+    suspend fun getAllFoodsLocal(): List<Food?>?
 
-    suspend fun insertFood(food: Food, result: (UiState<String>) -> Unit)
+    suspend fun insertFoodLocal(food: Food)
 
-    suspend fun insertAllFood(foods: List<Food>, result: (UiState<String>) -> Unit)
+    suspend fun insertAllFoodLocal(foods: List<Food>)
 
-    suspend fun getFoodById(id: String, result: (UiState<Food?>) -> Unit)
+    suspend fun getFoodByIdLocal(id: String): Food?
 
-    suspend fun deleteFoodById(id: String, result: (UiState<String>) -> Unit)
+    suspend fun deleteFoodByIdLocal(id: String)
 
-    suspend fun updateFood(food: Food, result: (UiState<String>) -> Unit)
+    suspend fun updateFoodLocal(food: Food)
 
 
     //history
-    suspend fun getHistory(uid: String, result: (UiState<History?>) -> Unit)
+    suspend fun getHistoryLocal(uid: String): History?
 
-    suspend fun updateHistory(history: History, result: (UiState<String>) -> Unit)
+    suspend fun updateHistoryLocal(history: History)
 
-    suspend fun getAllHistory(result: (UiState<List<History?>?>) -> Unit)
+    suspend fun getAllHistoryLocal():List<History?>?
 
 }

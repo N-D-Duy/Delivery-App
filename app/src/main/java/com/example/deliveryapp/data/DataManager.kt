@@ -1,6 +1,13 @@
 package com.example.deliveryapp.data
 
 import com.example.deliveryapp.data.local.database.DbHelper
+import com.example.deliveryapp.data.remote.CartRepository
+import com.example.deliveryapp.data.remote.FoodRepository
+import com.example.deliveryapp.data.remote.HistoryRepository
+import com.example.deliveryapp.data.remote.ImagesRepository
+import com.example.deliveryapp.data.remote.OfferRepository
+import com.example.deliveryapp.data.remote.OrderRepository
+import com.example.deliveryapp.data.remote.UserRepository
 import com.example.deliveryapp.model.Cart
 import com.example.deliveryapp.model.Food
 import com.example.deliveryapp.model.History
@@ -12,7 +19,7 @@ import com.example.deliveryapp.model.User
 import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
 
-interface DataManager{
+interface DataManager: DbHelper, CartRepository, FoodRepository, HistoryRepository, ImagesRepository, OfferRepository, OrderRepository, UserRepository{
     enum class LoggedInMode(val type: Int) {
         LOGGED_IN_MODE_LOGGED_OUT(0),
         LOGGED_IN_MODE_GOOGLE(1),
@@ -29,75 +36,75 @@ interface DataManager{
     // get data
 
         //User
-    suspend fun getUsers(): UiState<List<User?>?>
+    /*suspend fun getUsersDM(): UiState<List<User?>?>
 
-    suspend fun getUserById(uid: String): Flow<User?>
-    suspend fun getUserByName(name: String): Flow<User?>
+    suspend fun getUserByIdDM(uid: String): Flow<User?>
+    suspend fun getUserByNameDM(name: String): Flow<User?>
 
 
         //Food
-    suspend fun getFoods(): Flow<List<Food>?>
+    suspend fun getFoodsDM(): Flow<List<Food>?>
 
-    suspend fun getFoodById(foodId: String): Flow<UiState<Food?>>
+    suspend fun getFoodByIdDM(foodId: String): Flow<UiState<Food?>>
 
-    suspend fun getFoodByName(name: String): Flow<Food?>
+    suspend fun getFoodByNameDM(name: String): Flow<Food?>
 
 
         //History
-    suspend fun getAllHistory(): Flow<List<History?>?>
+    suspend fun getAllHistoryDM(): Flow<List<History?>?>
 
-    suspend fun getHistoryForUser(uid: String): Flow<User?>
+    suspend fun getHistoryForUserDM(uid: String): Flow<User?>
 
         //Cart
-    suspend fun getCartByUserId(uid: String): Flow<Cart?>
+    suspend fun getCartByUserIdDM(uid: String): Flow<Cart?>
 
         //Offer
-    suspend fun getOfferForFood(foodId: String): Flow<Offer?>
+    suspend fun getOfferForFoodDM(foodId: String): Flow<Offer?>
 
-    suspend fun getOfferForRestaurant(resId: String): Flow<Restaurant?>
+    suspend fun getOfferForRestaurantDM(resId: String): Flow<Restaurant?>
 
-    suspend fun getFreeShip()
+    suspend fun getFreeShipDM()
         //Order
-    suspend fun getOrderByUserId(uid: String): Flow<Order?>
+    suspend fun getOrderByUserIdDM(uid: String): Flow<Order?>
 
 
 
 
     //set data
         //Food
-    suspend fun insertFood(food: Food?)
+    suspend fun insertFoodDM(food: Food?)
 
-    suspend fun insertFoods(foods: List<Food?>?)
+    suspend fun insertFoodsDM(foods: List<Food?>?)
 
-    suspend fun updateFoods(vararg foods: Food?)
+    suspend fun updateFoodsDM(vararg foods: Food?)
 
         //User
-    suspend fun insertUser(user: User?)
+    suspend fun insertUserDM(user: User?)
 
-    suspend fun insertUsers(users: List<User?>?)
+    suspend fun insertUsersDM(users: List<User?>?)
 
-    suspend fun updateUsers(vararg user: User?)
+    suspend fun updateUsersDM(vararg user: User?)
 
         //History
-    suspend fun updateOrSetDefaultUser(history: History)
+    suspend fun updateOrSetDefaultUserDM(history: History)
 
         //Cart
-    suspend fun updateCart(userId: String, foodId: String, quantity: Int)
+    suspend fun updateCartDM(userId: String, foodId: String, quantity: Int)
 
-    suspend fun addFoodIntoCart(userId: String, foodId: String, quantity: Int)
+    suspend fun addFoodIntoCartDM(userId: String, foodId: String, quantity: Int)
 
         //Image
-    suspend fun updateImage()
+    suspend fun updateImageDM()
 
         //Offer
-    suspend fun updateOffer(offerId: String, offer: Offer)
+    suspend fun updateOfferDM(offerId: String, offer: Offer)
 
-    suspend fun addOffer(offer: Offer)
+    suspend fun addOfferDM(offer: Offer)
 
         //Order
-    suspend fun updateOrder(newStatus: String, userId: String)
+    suspend fun updateOrderDM(newStatus: String, userId: String)
 
-    suspend fun addOrder(order: Order, userId: String)
+    suspend fun addOrderDM(order: Order, userId: String)
 
 
 
@@ -117,13 +124,14 @@ interface DataManager{
     suspend fun deleteOrder(orderId: String)
 
     suspend fun deleteCart(uid: String)
+    */
 
 
     //others
-    suspend fun login(mode: LoggedInMode?)
+    /*suspend fun login(mode: LoggedInMode?)
 
     suspend fun logout()
 
     suspend fun register():User
-
+*/
 }

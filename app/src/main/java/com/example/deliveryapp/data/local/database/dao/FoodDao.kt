@@ -14,7 +14,7 @@ interface FoodDao{
     fun deleteFood(vararg foodIds: String?)
 
     @Query("Select * from food")
-    fun getAllFood(): List<Food>
+    fun getAllFood(): List<Food>?
 
     @Query("Select * from food where foodId IN (:foodIds)")
     fun getFood(foodIds: String): Food?

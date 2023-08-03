@@ -3,11 +3,19 @@ package com.example.deliveryapp.data
 import com.example.deliveryapp.data.local.database.AppDatabase
 import com.example.deliveryapp.data.local.database.AppDbHelper
 import com.example.deliveryapp.data.local.database.DbHelper
+import com.example.deliveryapp.data.remote.CartRepository
+import com.example.deliveryapp.data.remote.FoodRepository
 import com.example.deliveryapp.data.remote.FoodRepositoryImp
+import com.example.deliveryapp.data.remote.HistoryRepository
+import com.example.deliveryapp.data.remote.ImagesRepository
+import com.example.deliveryapp.data.remote.OfferRepository
+import com.example.deliveryapp.data.remote.OrderRepository
+import com.example.deliveryapp.data.remote.UserRepository
 import com.example.deliveryapp.data.remote.UserRepositoryImp
 import com.example.deliveryapp.model.Cart
 import com.example.deliveryapp.model.Food
 import com.example.deliveryapp.model.History
+import com.example.deliveryapp.model.ImageFood
 import com.example.deliveryapp.model.Offer
 import com.example.deliveryapp.model.Order
 import com.example.deliveryapp.model.Restaurant
@@ -21,178 +29,262 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
+import java.util.Date
+import javax.inject.Inject
 
-class AppData(
-    private val localDatabase: AppDatabase,
-    private val remoteDatabase: FirebaseFirestore
-) {
-//    override suspend fun getUsers(): UiState<List<User?>?> {
-        /*UiState.Loading
-        var localUsers: List<User?>? = arrayListOf()
-        var remoteUsers: List<User?>? = arrayListOf()
-
-        if(localUsers != null){
-            result.invoke(UiState.Success(localUsers))
-        }else{
-            UserRepositoryImp(remoteDatabase).getAllUser {result2->
-                when(result2){
-                    is UiState.Success->{
-                        remoteUsers = result2.data
-                    }
-                    is UiState.Error ->{
-                        //tra ve loi
-                    }
-                    else->{
-                    }
-                }
-            }
-            result.invoke(UiState.Success(remoteUsers))
-        }*//*
+class AppData @Inject constructor(
+    val cartRepository: CartRepository,
+    val foodRepository: FoodRepository,
+    val historyRepository: HistoryRepository,
+    val imagesRepository: ImagesRepository,
+    val offerRepository: OfferRepository,
+    val orderRepository: OrderRepository,
+    val userRepository: UserRepository,
+    val dbHelper: DbHelper
+) : DataManager {
+    override suspend fun getAllUsersLocal(): List<User?>? {
+        return dbHelper.getAllUsersLocal()
     }
 
-    override suspend fun getUserById(uid: String): Flow<User?> {
+    override suspend fun insertUserLocal(user: User) {
+        dbHelper.insertUserLocal(user)
+    }
+
+    override suspend fun insertAllUserLocal(users: List<User>) {
+        dbHelper.insertAllUserLocal(users)
+    }
+
+    override suspend fun getUserByIdLocal(id: String): User? {
+        return dbHelper.getUserByIdLocal(id)
+    }
+
+    override suspend fun deleteUserByIdLocal(id: String) {
+        dbHelper.deleteUserByIdLocal(id)
+    }
+
+    override suspend fun updateUserLocal(user: User) {
+        dbHelper.updateUserLocal(user)
+    }
+
+    override suspend fun getAllFoodsLocal(): List<Food?>? {
+        return dbHelper.getAllFoodsLocal()
+    }
+
+    override suspend fun insertFoodLocal(food: Food) {
+        dbHelper.insertFoodLocal(food)
+    }
+
+    override suspend fun insertAllFoodLocal(foods: List<Food>) {
+        dbHelper.insertAllFoodLocal(foods)
+    }
+
+    override suspend fun getFoodByIdLocal(id: String): Food? {
+        return dbHelper.getFoodByIdLocal(id)
+    }
+
+    override suspend fun deleteFoodByIdLocal(id: String) {
+        dbHelper.deleteFoodByIdLocal(id)
+    }
+
+    override suspend fun updateFoodLocal(food: Food) {
+        dbHelper.updateFoodLocal(food)
+    }
+
+    override suspend fun getHistoryLocal(uid: String): History? {
+        return dbHelper.getHistoryLocal(uid)
+    }
+
+    override suspend fun updateHistoryLocal(history: History) {
+        dbHelper.updateHistoryLocal(history)
+    }
+
+    override suspend fun getAllHistoryLocal(): List<History?>? {
+        return dbHelper.getAllHistoryLocal()
+    }
+
+    override suspend fun getCart(userId: String): UiState<Cart?> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getUserByName(name: String): Flow<User?> {
+    override suspend fun addToCart(userId: String, foodId: String, quantity: Int): UiState<Unit> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFoods(): Flow<List<Food>?> {
+    override suspend fun removeFromCart(userId: String, foodId: String): UiState<Unit> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFoodById(foodId: String): Flow<UiState<Food?>> = callbackFlow{
-
-    }
-
-    override suspend fun getFoodByName(name: String): Flow<Food?> {
+    override suspend fun updateCartItemQuantity(
+        userId: String,
+        foodId: String,
+        quantity: Int
+    ): UiState<Unit> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getAllHistory(): Flow<List<History?>?> {
+    override suspend fun clearCart(userId: String): UiState<Unit> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getHistoryForUser(uid: String): Flow<User?> {
+    override suspend fun update(food: Food, foodId: String): UiState<Unit> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getCartByUserId(uid: String): Flow<Cart?> {
+    override suspend fun addFood(food: Food, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getOfferForFood(foodId: String): Flow<Offer?> {
+    override suspend fun addListFood(foods: List<Food>, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getOfferForRestaurant(resId: String): Flow<Restaurant?> {
+    override suspend fun removeFood(foodId: String, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFreeShip() {
+    override suspend fun getFoodList(result: (UiState<List<Food>>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getOrderByUserId(uid: String): Flow<Order?> {
+    override suspend fun getFoodById(foodId: String, result: (UiState<Food?>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertFood(food: Food?) {
+    override suspend fun getSearchHistory(userId: String, result: (UiState<History>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertFoods(foods: List<Food?>?) {
+    override suspend fun addSearchQuery(
+        userId: String,
+        query: Map<String, Date>,
+        result: (UiState<String>) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateFoods(vararg foods: Food?) {
+    override suspend fun clearSearchHistory(userId: String, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertUser(user: User?) {
+    override suspend fun updateHistory(
+        userId: String,
+        newQuery: String,
+        timestamp: String,
+        result: (UiState<String>) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertUsers(users: List<User?>?) {
+    override suspend fun getImagesByFoodId(foodId: String, result: (UiState<ImageFood>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateUsers(vararg user: User?) {
+    override suspend fun addImage(
+        foodId: String,
+        newUrl: Map<String, String>,
+        result: (UiState<String>) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateOrSetDefaultUser(history: History) {
+    override suspend fun removeImage(
+        foodId: String,
+        urlImage: String,
+        result: (UiState<String>) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateCart(userId: String, foodId: String, quantity: Int) {
+    override suspend fun getRestaurantOffers(
+        restaurantId: String,
+        result: (UiState<Offer>) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addFoodIntoCart(userId: String, foodId: String, quantity: Int) {
+    override suspend fun getFoodOffers(foodId: String, result: (UiState<Offer>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateImage() {
+    override suspend fun getFreeShippingOffers(): Flow<Result<List<Offer>>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateOffer(offerId: String, offer: Offer) {
+    override suspend fun addOffer(offer: Offer, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addOffer(offer: Offer) {
+    override suspend fun updateOffer(
+        offerId: String,
+        offer: Offer,
+        result: (UiState<String>) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateOrder(newStatus: String, userId: String) {
+    override suspend fun deleteOffer(offerId: String, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addOrder(order: Order, userId: String) {
+    override suspend fun updateStatusOrder(
+        newStatus: String,
+        userId: String,
+        result: (UiState<String>) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteUser(userId: String?) {
+    override suspend fun getOrder(userId: String, result: (UiState<Order>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteImage() {
+    override suspend fun addOrder(order: Order, userId: String, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteFood(foodId: String) {
+    override suspend fun removeOrder(orderId: String, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteHistory(uid: String) {
+    override suspend fun getUserById(userId: String, result: (UiState<User>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteOffer(offerId: String) {
+    override suspend fun getAllUser(result: (UiState<List<User>>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteOrder(orderId: String) {
+    override suspend fun loginUser(email: String, password: String): Flow<Result<User>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteCart(uid: String) {
+    override suspend fun registerUser(email: String, password: String): Flow<Result<User>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun login(mode: DataManager.LoggedInMode?) {
+    override suspend fun logoutUser(userId: String): Flow<UiState<Unit>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun logout() {
+    override suspend fun deleteUser(userId: String, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun register(): User {
+    override suspend fun updateUser(userId: String, user: User, result: (UiState<String>) -> Unit) {
         TODO("Not yet implemented")
     }
-*/
+
+    override suspend fun insertUser(user: User, result: (UiState<String>) -> Unit) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun insertListUser(users: List<User>, result: (UiState<String>) -> Unit) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserByName(name: String, result: (UiState<User>) -> Unit) {
+        TODO("Not yet implemented")
+    }
+
 
 }

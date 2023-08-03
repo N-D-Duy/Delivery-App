@@ -15,10 +15,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val _localDatabase: AppDatabase,
-    private val _remoteDatabase: FirebaseFirestore
+
 ) : ViewModel() {
-    private val dataManager = AppData(_localDatabase, _remoteDatabase)
+
 
     private val _users = MutableLiveData<UiState<List<User?>?>>()
     val users: LiveData<UiState<List<User?>?>> get() = _users

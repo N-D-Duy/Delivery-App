@@ -10,9 +10,11 @@ import com.example.deliveryapp.data.local.database.dao.UserDao
 import com.example.deliveryapp.model.Food
 import com.example.deliveryapp.model.History
 import com.example.deliveryapp.model.User
+import javax.inject.Inject
 
 @Database(entities = [User::class, Food::class, History::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun userDao(): UserDao
     abstract fun foodDao(): FoodDao
     abstract fun historyDao(): HistoryDao
@@ -22,7 +24,6 @@ abstract class AppDatabase : RoomDatabase() {
         // same time.
         @Volatile
         private var INSTANCE: AppDatabase? = null
-
         fun getDatabase(context: Context): AppDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database

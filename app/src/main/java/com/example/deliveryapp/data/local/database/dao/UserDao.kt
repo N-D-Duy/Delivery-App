@@ -27,7 +27,7 @@ interface UserDao {
     fun insertAll(users: List<User?>?)
 
     @Query("SELECT * FROM user")
-    fun loadAll(): List<User>
+    fun loadAll(): List<User>?
 
     @Update
     fun updateUsers(vararg user: User?)

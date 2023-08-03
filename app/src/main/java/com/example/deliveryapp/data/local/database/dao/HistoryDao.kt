@@ -9,7 +9,7 @@ import com.example.deliveryapp.model.History
 @Dao
 interface HistoryDao {
     @Query("Select * from history where uid like :uid")
-    fun getHistoryByUserId(uid: String?): History
+    fun getHistoryByUserId(uid: String?): History?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun updateOrSetDefaultUser(history: History)
@@ -20,5 +20,5 @@ interface HistoryDao {
     fun deleteHistoryForUser(uid: String)
 
     @Query("Select * from history")
-    fun getAllHistory(): List<History>
+    fun getAllHistory(): List<History>?
 }
