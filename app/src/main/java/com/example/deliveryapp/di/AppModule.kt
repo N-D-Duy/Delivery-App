@@ -1,26 +1,12 @@
-package com.example.deliveryapp.data.di
+package com.example.deliveryapp.di
 
 import android.app.Application
 import android.content.Context
-import com.example.deliveryapp.data.AppData
-import com.example.deliveryapp.data.DataManager
 import com.example.deliveryapp.data.local.database.AppDatabase
 import com.example.deliveryapp.data.local.database.AppDbHelper
 import com.example.deliveryapp.data.local.database.DbHelper
-import com.example.deliveryapp.data.remote.CartRepository
-import com.example.deliveryapp.data.remote.CartRepositoryImp
-import com.example.deliveryapp.data.remote.FoodRepository
-import com.example.deliveryapp.data.remote.FoodRepositoryImp
-import com.example.deliveryapp.data.remote.HistoryRepository
-import com.example.deliveryapp.data.remote.HistoryRepositoryImp
-import com.example.deliveryapp.data.remote.ImagesRepository
-import com.example.deliveryapp.data.remote.ImagesRepositoryImp
-import com.example.deliveryapp.data.remote.OfferRepository
-import com.example.deliveryapp.data.remote.OfferRepositoryImp
-import com.example.deliveryapp.data.remote.OrderRepository
-import com.example.deliveryapp.data.remote.OrderRepositoryImp
-import com.example.deliveryapp.data.remote.UserRepository
-import com.example.deliveryapp.data.remote.UserRepositoryImp
+import com.example.deliveryapp.data.remote.FirebaseRepository
+import com.example.deliveryapp.data.remote.FirebaseRepositoryHelper
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
@@ -36,12 +22,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
-
-    @Provides
+   /* @Provides
     @Singleton
     fun provideCartRepository(
         database: FirebaseFirestore
-    ): CartRepository{
+    ): CartRepository {
         return CartRepositoryImp(database)
     }
 
@@ -49,7 +34,7 @@ object AppModule {
     @Singleton
     fun provideFoodRepository(
         database: FirebaseFirestore
-    ): FoodRepository{
+    ): FoodRepository {
         return FoodRepositoryImp(database)
     }
 
@@ -57,7 +42,7 @@ object AppModule {
     @Singleton
     fun provideHistoryRepository(
         database: FirebaseFirestore
-    ): HistoryRepository{
+    ): HistoryRepository {
         return HistoryRepositoryImp(database)
     }
 
@@ -65,7 +50,7 @@ object AppModule {
     @Singleton
     fun provideImagesRepository(
         database: FirebaseFirestore
-    ): ImagesRepository{
+    ): ImagesRepository {
         return ImagesRepositoryImp(database)
     }
 
@@ -73,7 +58,7 @@ object AppModule {
     @Singleton
     fun provideOfferRepository(
         database: FirebaseFirestore
-    ): OfferRepository{
+    ): OfferRepository {
         return OfferRepositoryImp(database)
     }
 
@@ -81,7 +66,7 @@ object AppModule {
     @Singleton
     fun provideOrderRepository(
         database: FirebaseFirestore
-    ): OrderRepository{
+    ): OrderRepository {
         return OrderRepositoryImp(database)
     }
 
@@ -89,9 +74,9 @@ object AppModule {
     @Singleton
     fun provideUserRepository(
         database: FirebaseFirestore
-    ): UserRepository{
+    ): UserRepository {
         return UserRepositoryImp(database)
-    }
+    }*/
 
     @Provides
     @Singleton
@@ -129,5 +114,9 @@ object AppModule {
         return AppDatabase.getDatabase(context)
     }
 
-
+    @Provides
+    @Singleton
+    fun provideFirebaseRepository(database: FirebaseFirestore): FirebaseRepository{
+        return FirebaseRepositoryHelper(database)
+    }
 }

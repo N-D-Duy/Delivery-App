@@ -2,7 +2,7 @@ package com.example.deliveryapp.data.local.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.deliveryapp.data.DataManager.LoggedInMode
+import com.example.deliveryapp.domain.DataManager.LoggedInMode
 import com.example.deliveryapp.utils.Constants
 import javax.inject.Inject
 

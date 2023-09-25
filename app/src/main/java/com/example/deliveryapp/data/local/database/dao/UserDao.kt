@@ -14,7 +14,7 @@ interface UserDao {
     @Query("DELETE FROM user WHERE userId in (:userIds)")
     fun delete(vararg userIds: String?)
 
-    @Query("SELECT * FROM user WHERE user_name LIKE :name LIMIT 1")
+    @Query("SELECT * FROM user WHERE user_name LIKE :name")
     fun findByName(name: String?): User?
 
     @Query("SELECT * FROM user WHERE userId LIKE :uid LIMIT 1")

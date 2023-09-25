@@ -12,7 +12,7 @@ interface HistoryDao {
     fun getHistoryByUserId(uid: String?): History?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateOrSetDefaultUser(history: History)
+    fun updateOrSetDefaultHistory(history: History)
 
 
     //bỏ, thay bằng việc update default cho history

@@ -1,6 +1,6 @@
 package com.example.deliveryapp.data.local.prefs
 
-import com.example.deliveryapp.data.DataManager
+import com.example.deliveryapp.domain.DataManager
 
 interface Preferences {
     fun getAccessToken(): String?
