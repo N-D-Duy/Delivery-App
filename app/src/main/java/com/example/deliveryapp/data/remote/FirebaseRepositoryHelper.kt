@@ -6,6 +6,7 @@ import com.example.deliveryapp.model.History
 import com.example.deliveryapp.model.ImageFood
 import com.example.deliveryapp.model.Offer
 import com.example.deliveryapp.model.Order
+import com.example.deliveryapp.model.Query
 import com.example.deliveryapp.model.User
 import com.example.deliveryapp.utils.FirebaseCollections
 import com.example.deliveryapp.utils.UiState
@@ -396,7 +397,7 @@ class FirebaseRepositoryHelper(val database: FirebaseFirestore) : FirebaseReposi
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun addSearchQuery(userId: String, query: MutableMap<String, Date>): Flow<UiState<String>> =
+    override fun addSearchQuery(userId: String, query: MutableMap<String, Query>): Flow<UiState<String>> =
         flow {
             emit(UiState.Loading)
             try {
@@ -434,17 +435,18 @@ class FirebaseRepositoryHelper(val database: FirebaseFirestore) : FirebaseReposi
     override fun updateHistory(
         userId: String,
         newQuery: String,
-        timestamp: Date
+        timestamp: Long
     ): Flow<UiState<String>> = flow {
         emit(UiState.Loading)
         try {
+            val query = Query(newQuery, timestamp)
             val historyRef = database.collection(FirebaseCollections.HISTORY)
                 .document(userId)
             val historySnapshot = historyRef.get().await()
             if(historySnapshot.exists()){
                 val historyData = historySnapshot.toObject(History::class.java)
                 // Update the queries map with the new query and timestamp
-                historyData?.query?.put(newQuery, timestamp)
+                historyData?.query?.put("query2", query)
 
                 // Update the "queries" field in the Fire-store document
                 historyRef.set(historyData as History)

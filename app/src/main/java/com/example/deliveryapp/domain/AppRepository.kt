@@ -8,6 +8,7 @@ import com.example.deliveryapp.model.History
 import com.example.deliveryapp.model.ImageFood
 import com.example.deliveryapp.model.Offer
 import com.example.deliveryapp.model.Order
+import com.example.deliveryapp.model.Query
 import com.example.deliveryapp.model.User
 import com.example.deliveryapp.utils.UiState
 import kotlinx.coroutines.flow.Flow
@@ -109,7 +110,7 @@ class AppRepository @Inject constructor(
         }
     }
 
-    override fun addSearchQuery(userId: String, query: MutableMap<String, Date>): Flow<UiState<String>> {
+    override fun addSearchQuery(userId: String, query: MutableMap<String, Query>): Flow<UiState<String>> {
         val history = History(uid = userId, query = query)
         dbHelper.updateHistoryLocal(history)
         return firebaseRepository.addSearchQuery(userId, query)
@@ -124,10 +125,11 @@ class AppRepository @Inject constructor(
     override fun updateHistory(
         userId: String,
         newQuery: String,
-        timestamp: Date
+        timestamp: Long
     ): Flow<UiState<String>> {
-        val map = mutableMapOf(
-            newQuery to timestamp
+        val query = Query(newQuery, timestamp)
+        val map = hashMapOf(
+            "new query" to query
         )
         val history = History(userId, map)
         dbHelper.updateHistoryLocal(history)

@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.deliveryapp.utils.MapConverter
 import kotlinx.parcelize.Parcelize
-import java.util.Date
 
 @Parcelize
 @Entity("history")
@@ -15,7 +14,8 @@ data class History(
     @PrimaryKey
     val uid: String,
 
-    @ColumnInfo("query")
-    var query:MutableMap<String, Date>? = mutableMapOf()
-
+    @ColumnInfo("queries")
+    var query:MutableMap<String, Query>? = mutableMapOf()
 ) : Parcelable
+
+
